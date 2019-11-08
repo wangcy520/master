@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.wm.gameplat.controller.usercenter.mapper.MenuInfoMapper">
+
+    <resultMap type="com.wm.gameplat.controller.usercenter.domain.MenuInfo" id="resultMapOfMenuInfo">
+        <result column="menu_id" property="menuId"/>
+        <result column="menu_name" property="menuName"/>
+        <result column="title" property="title"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="path" property="path"/>
+        <result column="menu_type" property="menuType"/>
+        <result column="visible" property="visible"/>
+        <result column="perms" property="perms"/>
+        <result column="icon" property="icon"/>
+        <result column="status" property="status"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <sql id="FieldsOfMenuInfo">menu_id, menu_name, title, parent_id, order_num, path, menu_type, visible, perms, icon,
+        status, create_by, create_time, update_by, update_time, remark
+    </sql>
+
+    <sql id="FieldsOfMenuInfoWithoutId">menu_id,menu_name, title, parent_id, order_num, path, menu_type, visible, perms,
+        icon, status, create_by, create_time, update_by, update_time, remark
+    </sql>
+
+    <select id="findById" resultMap="resultMapOfMenuInfo" parameterType="java.lang.Long">
+        select
+        <include refid="FieldsOfMenuInfo"/>
+        from menu_info where id = #{id}
+    </select>
+
+    <select id="findByIds" resultMap="resultMapOfMenuInfo" parameterType="java.util.List">
+        select
+        <include refid="FieldsOfMenuInfo"/>
+        from menu_info where id in
+        <foreach item="item" index="index" collection="list" open="(" separator=", " close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="findByExample" resultMap="resultMapOfMenuInfo"
+            parameterType="com.wm.gameplat.controller.usercenter.domain.MenuInfo">
+        select
+        <include refid="FieldsOfMenuInfo"/>
+        from menu_info
+        <where>
+            <if test="menuId != null and menuId != ''">and menu_id = #{menuId}</if>
+            <if test="menuName != null and menuName != ''">and menu_name = #{menuName}</if>
+            <if test="title != null and title != ''">and title = #{title}</if>
+            <if test="parentId != null and parentId != ''">and parent_id = #{parentId}</if>
+            <if test="orderNum != null and orderNum != ''">and order_num = #{orderNum}</if>
+            <if test="path != null and path != ''">and path = #{path}</if>
+            <if test="menuType != null and menuType != ''">and menu_type = #{menuType}</if>
+            <if test="visible != null and visible != ''">and visible = #{visible}</if>
+            <if test="perms != null and perms != ''">and perms = #{perms}</if>
+            <if test="icon != null and icon != ''">and icon = #{icon}</if>
+            <if test="status != null and status != ''">and status = #{status}</if>
+            <if test="createBy != null and createBy != ''">and create_by = #{createBy}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateBy != null and updateBy != ''">and update_by = #{updateBy}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="remark != null and remark != ''">and remark = #{remark}</if>
+        </where>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer"
+            parameterType="com.wm.gameplat.controller.usercenter.domain.MenuInfo">
+        select count(id) from menu_info
+        <where>
+            <if test="menuId != null and menuId !=''">and menu_id = #{menuId}</if>
+            <if test="menuName != null and menuName !=''">and menu_name = #{menuName}</if>
+            <if test="title != null and title !=''">and title = #{title}</if>
+            <if test="parentId != null and parentId !=''">and parent_id = #{parentId}</if>
+            <if test="orderNum != null and orderNum !=''">and order_num = #{orderNum}</if>
+            <if test="path != null and path !=''">and path = #{path}</if>
+            <if test="menuType != null and menuType !=''">and menu_type = #{menuType}</if>
+            <if test="visible != null and visible !=''">and visible = #{visible}</if>
+            <if test="perms != null and perms !=''">and perms = #{perms}</if>
+            <if test="icon != null and icon !=''">and icon = #{icon}</if>
+            <if test="status != null and status !=''">and status = #{status}</if>
+            <if test="createBy != null and createBy !=''">and create_by = #{createBy}</if>
+            <if test="createTime != null and createTime !=''">and create_time = #{createTime}</if>
+            <if test="updateBy != null and updateBy !=''">and update_by = #{updateBy}</if>
+            <if test="updateTime != null and updateTime !=''">and update_time = #{updateTime}</if>
+            <if test="remark != null and remark !=''">and remark = #{remark}</if>
+        </where>
+    </select>
+
+    <select id="findByParams" resultMap="resultMapOfMenuInfo" parameterType="java.util.Map">
+        select
+        <include refid="FieldsOfMenuInfo"/>
+        from menu_info
+        <where>
+            <if test="menuId != null and menuId != '' ">and menu_id = #{menuId}</if>
+            <if test="menuName != null and menuName != '' ">and menu_name = #{menuName}</if>
+            <if test="title != null and title != '' ">and title = #{title}</if>
+            <if test="parentId != null and parentId != '' ">and parent_id = #{parentId}</if>
+            <if test="orderNum != null and orderNum != '' ">and order_num = #{orderNum}</if>
+            <if test="path != null and path != '' ">and path = #{path}</if>
+            <if test="menuType != null and menuType != '' ">and menu_type = #{menuType}</if>
+            <if test="visible != null and visible != '' ">and visible = #{visible}</if>
+            <if test="perms != null and perms != '' ">and perms = #{perms}</if>
+            <if test="icon != null and icon != '' ">and icon = #{icon}</if>
+            <if test="status != null and status != '' ">and status = #{status}</if>
+            <if test="createBy != null and createBy != '' ">and create_by = #{createBy}</if>
+            <if test="createTime != null and createTime != '' ">and create_time = #{createTime}</if>
+            <if test="updateBy != null and updateBy != '' ">and update_by = #{updateBy}</if>
+            <if test="updateTime != null and updateTime != '' ">and update_time = #{updateTime}</if>
+            <if test="remark != null and remark != '' ">and remark = #{remark}</if>
+        </where>
+    </select>
+
+    <select id="countByParams" resultType="java.lang.Integer" parameterType="java.util.Map">
+        select count(id) from menu_info
+        <where>
+            <if test="menuId != null and menuId != '' ">and menu_id = #{menuId}</if>
+            <if test="menuName != null and menuName != '' ">and menu_name = #{menuName}</if>
+            <if test="title != null and title != '' ">and title = #{title}</if>
+            <if test="parentId != null and parentId != '' ">and parent_id = #{parentId}</if>
+            <if test="orderNum != null and orderNum != '' ">and order_num = #{orderNum}</if>
+            <if test="path != null and path != '' ">and path = #{path}</if>
+            <if test="menuType != null and menuType != '' ">and menu_type = #{menuType}</if>
+            <if test="visible != null and visible != '' ">and visible = #{visible}</if>
+            <if test="perms != null and perms != '' ">and perms = #{perms}</if>
+            <if test="icon != null and icon != '' ">and icon = #{icon}</if>
+            <if test="status != null and status != '' ">and status = #{status}</if>
+            <if test="createBy != null and createBy != '' ">and create_by = #{createBy}</if>
+            <if test="createTime != null and createTime != '' ">and create_time = #{createTime}</if>
+            <if test="updateBy != null and updateBy != '' ">and update_by = #{updateBy}</if>
+            <if test="updateTime != null and updateTime != '' ">and update_time = #{updateTime}</if>
+            <if test="remark != null and remark != '' ">and remark = #{remark}</if>
+        </where>
+    </select>
+
+    <select id="findAll" resultMap="resultMapOfMenuInfo">
+        select
+        <include refid="FieldsOfMenuInfo"/>
+        from menu_info
+    </select>
+
+    <insert id="save" parameterType="com.wm.gameplat.controller.usercenter.domain.MenuInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into menu_info(
+        <include refid="FieldsOfMenuInfoWithoutId"/>
+        ) values (
+        , #{menuId}#{menuName}, #{title}, #{parentId}, #{orderNum}, #{path}, #{menuType}, #{visible}, #{perms}, #{icon},
+        #{status}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{remark} )
+    </insert>
+
+    <update id="update" parameterType="com.wm.gameplat.controller.usercenter.domain.MenuInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        update menu_info
+        <set>
+            <if test="menuId != null and menuId != '' ">menu_id = #{menuId},</if>
+            <if test="menuName != null and menuName != '' ">menu_name = #{menuName},</if>
+            <if test="title != null and title != '' ">title = #{title},</if>
+            <if test="parentId != null and parentId != '' ">parent_id = #{parentId},</if>
+            <if test="orderNum != null and orderNum != '' ">order_num = #{orderNum},</if>
+            <if test="path != null and path != '' ">path = #{path},</if>
+            <if test="menuType != null and menuType != '' ">menu_type = #{menuType},</if>
+            <if test="visible != null and visible != '' ">visible = #{visible},</if>
+            <if test="perms != null and perms != '' ">perms = #{perms},</if>
+            <if test="icon != null and icon != '' ">icon = #{icon},</if>
+            <if test="status != null and status != '' ">status = #{status},</if>
+            <if test="createBy != null and createBy != '' ">create_by = #{createBy},</if>
+            <if test="createTime != null and createTime != '' ">create_time = #{createTime},</if>
+            <if test="updateBy != null and updateBy != '' ">update_by = #{updateBy},</if>
+            <if test="updateTime != null and updateTime != '' ">update_time = #{updateTime},</if>
+            <if test="remark != null and remark != '' ">remark = #{remark},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from menu_info where id = #{id}
+    </delete>
+
+    <insert id="saveOrUpdate" parameterType="com.wm.gameplat.controller.usercenter.domain.MenuInfo">
+        insert into menu_info (
+        <include refid="FieldsOfMenuInfoWithoutId"/>
+        ) values (
+        , #{menuId}#{menuName}, #{title}, #{parentId}, #{orderNum}, #{path}, #{menuType}, #{visible}, #{perms}, #{icon},
+        #{status}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{remark} )
+        on duplicate key update
+        , menu_id=#{menuId}menu_name=#{menuName}, title=#{title}, parent_id=#{parentId}, order_num=#{orderNum},
+        path=#{path}, menu_type=#{menuType}, visible=#{visible}, perms=#{perms}, icon=#{icon}, status=#{status},
+        create_by=#{createBy}, create_time=#{createTime}, update_by=#{updateBy}, update_time=#{updateTime},
+        remark=#{remark}
+    </insert>
+
+    <insert id="batchSave" parameterType="java.util.List">
+        insert into menu_info(
+        <include refid="FieldsOfMenuInfoWithoutId"/>
+        ) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (, #{item.menuId}#{item.menuName}, #{item.title}, #{item.parentId}, #{item.orderNum}, #{item.path},
+            #{item.menuType}, #{item.visible}, #{item.perms}, #{item.icon}, #{item.status}, #{item.createBy},
+            #{item.createTime}, #{item.updateBy}, #{item.updateTime}, #{item.remark})
+        </foreach>
+    </insert>
+
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update menu_info
+            <set>
+                ,menu_id=#{item.menuId} menu_name=#{item.menuName} ,title=#{item.title} ,parent_id=#{item.parentId}
+                ,order_num=#{item.orderNum} ,path=#{item.path} ,menu_type=#{item.menuType} ,visible=#{item.visible}
+                ,perms=#{item.perms} ,icon=#{item.icon} ,status=#{item.status} ,create_by=#{item.createBy}
+                ,create_time=#{item.createTime} ,update_by=#{item.updateBy} ,update_time=#{item.updateTime}
+                ,remark=#{item.remark}
+            </set>
+            where id = #{item.id}
+        </foreach>
+
+    </update>
+
+    <delete id="batchDelete" parameterType="java.util.List">
+        delete from menu_info where id in
+        <foreach item="item" index="index" collection="list" open="(" separator=", " close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="findMenuByRole" resultMap="resultMapOfMenuInfo" parameterType="arraylist">
+        select
+        <include refid="FieldsOfMenuInfo"/>
+        from menu_info where
+        menu_id in
+        <foreach item="item" index="index" collection="array" open="(" separator=", " close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>
