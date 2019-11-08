@@ -45,7 +45,7 @@ public class ImageValidateFilter extends OncePerRequestFilter {
                 break;
             }
         }
-        if (false) {
+        if (flag) {
             String captchaId = request.getParameter("captchaId");
             String code = request.getParameter("code");
             if (StringUtils.isBlank(captchaId) || StringUtils.isBlank(code)) {
