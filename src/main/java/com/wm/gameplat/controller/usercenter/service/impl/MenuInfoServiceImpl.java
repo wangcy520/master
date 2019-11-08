@@ -69,6 +69,7 @@ public class MenuInfoServiceImpl implements MenuInfoService {
 
     @Override
     public List<MenuInfo> findMenuByRole(int... roleIds) {
+        /*hellokt*/
         return menuInfoMapper.findMenuByRole(roleIds);
     }
 }
