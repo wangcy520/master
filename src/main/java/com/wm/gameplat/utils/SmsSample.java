@@ -49,7 +49,7 @@ public class SmsSample {
         String strResult = request(httpUrl, httpArg);
         if ("0".equals(strResult)) {
             stringRedisTemplate.opsForValue().set(CommonConstant.PRE_SMS + mobile, smsCode, 5L, TimeUnit.MINUTES);
-            stringRedisTemplate.opsForValue().set(ipAddr, "", 1L, TimeUnit.MINUTES);
+            stringRedisTemplate.opsForValue().set(CommonConstant.PRE_SMS + ipAddr, "", 1L, TimeUnit.MINUTES);
             return  ResultUtil.success();
         }
         return   ResultUtil.error();

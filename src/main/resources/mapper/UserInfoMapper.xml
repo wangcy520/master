@@ -187,4 +187,13 @@
         where user_name = #{fuckYou}
     </select>
 
+    <select id="findByMobile" resultMap="resultMapOfUserInfo" parameterType="string">
+         SELECT
+        *
+        FROM
+        user_info
+        where phone = #{fuckYou}
+
+    </select>
+
 </mapper>
