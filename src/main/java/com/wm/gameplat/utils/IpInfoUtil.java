@@ -24,7 +24,7 @@ public class IpInfoUtil {
      * @param request 请求
      * @return
      */
-    public String getIpAddr(HttpServletRequest request) {
+    public static String getIpAddr(HttpServletRequest request) {
 
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
@@ -58,53 +58,6 @@ public class IpInfoUtil {
         return ip;
     }
 
-    /**
-     * 获取IP返回地理天气信息
-     *
-     * @param ip ip地址
-     * @return
-     */
-    public String getIpWeatherInfo(String ip) {
-
-        /*String GET_IP_WEATHER = "http://apicloud.mob.com/v1/weather/ip?key="+ appKey +"&ip=";
-        if(StrUtil.isNotBlank(ip)){
-            String url = GET_IP_WEATHER + ip;
-            String result = HttpUtil.get(url);
-            return result;
-        }*/
-        return null;
-    }
-
-    /**
-     * 获取IP返回地理信息
-     *
-     * @param ip ip地址
-     * @return
-     */
-    public String getIpCity(String ip) {
-
-        /*String GET_IP_LOCATE = "http://apicloud.mob.com/ip/query?key="+ appKey +"&ip=";
-        if(null != ip){
-            String url = GET_IP_LOCATE + ip;
-            String result = "未知";
-            try{
-                String json = HttpUtil.get(url, 3000);
-                IpLocate locate = new Gson().fromJson(json, IpLocate.class);
-                if(("200").equals(locate.getRetCode())){
-                    if(StrUtil.isNotBlank(locate.getResult().getProvince())){
-                        result=locate.getResult().getProvince()+" "+locate.getResult().getCity();
-                    }else{
-                        result=locate.getResult().getCountry();
-                    }
-                }
-            }catch (Exception e){
-                log.info("获取IP信息失败");
-            }
-            return result;
-        }*/
-        return null;
-    }
-
     public void getUrl(HttpServletRequest request) {
 
         /*try {
@@ -118,15 +71,4 @@ public class IpInfoUtil {
         }*/
     }
 
-    public void getInfo(HttpServletRequest request, String p) {
-       /* try {
-            String url = request.getRequestURL().toString();
-            if(url.contains("127.0.0.1")||url.contains("localhost")){
-                return;
-            }
-            asyncUtil.getInfo(url, p);
-        }catch (Exception e){
-            e.printStackTrace();
-        }*/
-    }
 }

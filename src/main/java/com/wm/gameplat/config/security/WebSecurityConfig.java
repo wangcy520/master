@@ -35,7 +35,7 @@ import java.util.ArrayList;
  */
 @Slf4j
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 @EnableAutoConfiguration
 @EnableGlobalMethodSecurity(prePostEnabled =true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {

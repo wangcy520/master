@@ -4,8 +4,12 @@ package com.wm.gameplat.controller.usercenter.controller;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.wm.gameplat.controller.usercenter.domain.UserInfo;
+import com.wm.gameplat.controller.usercenter.service.UserInfoService;
 import com.wm.gameplat.utils.ResultUtil;
+import com.wm.gameplat.utils.SecurityUtil;
 import com.wm.gameplat.vo.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -20,6 +24,11 @@ import java.util.Map;
 @RequestMapping(value = "/usercenter")
 public class UserController {
 
+    @Autowired
+    private UserInfoService userInfoService;
+
+    @Autowired
+    private SecurityUtil securityUtil;
     /**
      * 判断会员是否已登录
      *
@@ -49,6 +58,16 @@ public class UserController {
         params.put("captchaId", captchaId);
         String result = HttpUtil.post(loginUrl, params);
         return JSON.parseObject(result);
+    }
+
+    @RequestMapping(value = "/smsLogin", method = RequestMethod.POST)
+    public Result smsLogin(@RequestParam String mobile, @RequestParam String code){
+        UserInfo byMobile = userInfoService.findByMobile(mobile);
+        if (null ==byMobile){
+            throw new RuntimeException("手机号不存在");
+        }
+        String token = securityUtil.getToken(byMobile.getUsername(), false);
+        return ResultUtil.success(token);
     }
 
 }

@@ -25,4 +25,6 @@ public interface UserInfoService {
 
     UserInfo findByUsername(String userName);
 
+    UserInfo findByMobile(String mobile);
+
 }

@@ -189,21 +189,28 @@ public class CreateVerifyCode {
 
     }
 
-    /**
-     * 得到随机字符
-     * @param n
-     * @return
-     */
-    public String randomStr(int n) {
-        String str1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        String str2 = "";
-        int len = str1.length() - 1;
-        double r;
-        for (int i = 0; i < n; i++) {
-            r = (Math.random()) * len;
-            str2 = str2 + str1.charAt((int) r);
+    public static String randomStr(int size) {
+        StringBuilder val = new StringBuilder();
+        Random random = new Random();
+        for(int i = 0; i < size; i++) {
+            String charOrNum = random.nextInt(2) % 2 == 0 ? "char" : "num";
+            if( "char".equalsIgnoreCase(charOrNum) ) {
+                int temp = random.nextInt(2) % 2 == 0 ? 65 : 97;
+                val.append((char) (random.nextInt(26) + temp));
+            } else {
+                val.append(String.valueOf(random.nextInt(10)));
+            }
         }
-        return str2;
+        return val.toString();
+    }
+
+    public static String getSmsCode(int size) {
+        StringBuilder val = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < size; i++) {
+            val.append(String.valueOf(random.nextInt(10)));
+        }
+        return val.toString();
     }
 
     /**

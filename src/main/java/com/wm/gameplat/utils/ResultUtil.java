@@ -30,11 +30,23 @@ public class ResultUtil<T> {
         this.result.setResult(null);
         return this.result;
     }
+    public Result<T> setSuccessMsg(){
+        this.result.setSuccess(true);
+        this.result.setCode(200);
+        this.result.setResult(null);
+        return this.result;
+    }
 
     public Result<T> setData(T t, String msg){
         this.result.setResult(t);
         this.result.setCode(200);
         this.result.setMessage(msg);
+        return this.result;
+    }
+
+    public Result<T> setErrorMsg(){
+        this.result.setSuccess(false);
+        this.result.setCode(500);
         return this.result;
     }
 
@@ -64,8 +76,16 @@ public class ResultUtil<T> {
         return new ResultUtil<T>().setSuccessMsg(msg);
     }
 
+    public static <T> Result<T> success(){
+        return new ResultUtil<T>().setSuccessMsg();
+    }
+
     public static <T> Result<T> error(String msg){
         return new ResultUtil<T>().setErrorMsg(msg);
+    }
+
+    public static <T> Result<T> error(){
+        return new ResultUtil<T>().setErrorMsg();
     }
 
     public static <T> Result<T> error(Integer code, String msg){
