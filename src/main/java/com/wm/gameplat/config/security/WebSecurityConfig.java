@@ -1,5 +1,6 @@
 package com.wm.gameplat.config.security;
 
+import com.wm.gameplat.config.properties.CaptchaProperties;
 import com.wm.gameplat.config.properties.TokenProperties;
 import com.wm.gameplat.config.security.jwt.AuthenticationFailHandler;
 import com.wm.gameplat.config.security.jwt.AuthenticationSuccessHandler;
@@ -61,6 +62,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ImageValidateFilter imageValidateFilter;
 
+    @Autowired
+    private CaptchaProperties captchaProperties;
+
     /*@Autowired
     private SmsValidateFilter smsValidateFilter;
 
@@ -87,8 +91,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http
                 .authorizeRequests();
         // 除配置文件忽略路径其它所有请求都需经过认证和授权
-        for (Object url : new ArrayList<>()) {
-            registry.antMatchers(url.toString()).permitAll();
+        for (String url : captchaProperties.getIgnored()) {
+            registry.antMatchers(url).permitAll();
         }
 
         registry.and()

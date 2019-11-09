@@ -36,7 +36,7 @@ public class UserController {
         return new ResultUtil<Object>().setErrorMsg(401, "您还未登录");
     }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public JSONObject swaggerLogin(@RequestParam String username, @RequestParam String password,
+    public JSONObject login(@RequestParam String username, @RequestParam String password,
                                    @RequestParam(required = false) String code,
                                    @RequestParam(required = false) String captchaId,
                                    @RequestParam(required = false, defaultValue = "http://127.0.0.1:8080/usercenter/login")
