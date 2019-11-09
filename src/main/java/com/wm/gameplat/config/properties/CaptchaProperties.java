@@ -21,6 +21,8 @@ public class CaptchaProperties {
 
     private List<String> email = new ArrayList<>();
 
+    private List<String> ignored = new ArrayList<>();
+
     public List<String> getImage() {
         return image;
     }
@@ -51,5 +53,13 @@ public class CaptchaProperties {
 
     public void setEmail(List<String> email) {
         this.email = email;
+    }
+
+    public List<String> getIgnored() {
+        return ignored;
+    }
+
+    public void setIgnored(List<String> ignored) {
+        this.ignored = ignored;
     }
 }

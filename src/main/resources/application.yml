@@ -27,7 +27,15 @@ mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
 captcha:
   image:
-  - /usercenter/login
+    - /usercenter/login
+  sms:
+    - /usercenter/smsLogin
+  ignored:
+    - /captcha/**
+    - /usercenter/smsLogin
+smsbao:
+  username: ck1744
+  password: AaAa1111@
 
 token:
   # 设置为true后，token将存入redis，并具有单点登录功能 默认false使用JWT交互

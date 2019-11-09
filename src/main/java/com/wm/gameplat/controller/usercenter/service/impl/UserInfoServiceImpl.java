@@ -83,5 +83,11 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
         return null;
     }
+
+    @Override
+    public UserInfo findByMobile(String mobile) {
+
+        return  userInfoMapper.findByMobile(mobile);
+    }
 }
 

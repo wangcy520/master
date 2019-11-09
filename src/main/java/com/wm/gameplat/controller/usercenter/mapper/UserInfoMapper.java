@@ -43,4 +43,6 @@ public interface UserInfoMapper {
     int batchDelete(List<Long> ids);
 
     UserInfo findByUsername(String userName);
+
+    UserInfo findByMobile(String mobile);
 }
