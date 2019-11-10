@@ -51,17 +51,6 @@ public class ActivityInfo   {
      * 排序
      */
     private String orderNum;
-
-    /**
-     * 公告对应的图片id
-     */
-    private String picIds;
-
-    /**
-     * 玩家类型0普通/1试玩
-     */
-    private String playerType;
-
     /**
      * 创建人
      */
@@ -155,22 +144,6 @@ public class ActivityInfo   {
         this.orderNum = orderNum;
     }
 
-    public String getPicIds() {
-        return picIds;
-    }
-
-    public void setPicIds(String picIds) {
-        this.picIds = picIds;
-    }
-
-    public String getPlayerType() {
-        return playerType;
-    }
-
-    public void setPlayerType(String playerType) {
-        this.playerType = playerType;
-    }
-
     public String getCreateBy() {
         return createBy;
     }
@@ -215,8 +188,6 @@ public class ActivityInfo   {
                 ", contentType='" + contentType + '\'' +
                 ", content='" + content + '\'' +
                 ", orderNum='" + orderNum + '\'' +
-                ", picIds='" + picIds + '\'' +
-                ", playerType='" + playerType + '\'' +
                 ", createBy='" + createBy + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", updateBy='" + updateBy + '\'' +
