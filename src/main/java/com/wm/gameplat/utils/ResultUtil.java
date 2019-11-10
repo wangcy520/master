@@ -47,6 +47,7 @@ public class ResultUtil<T> {
     public Result<T> setErrorMsg(){
         this.result.setSuccess(false);
         this.result.setCode(500);
+        this.result.setMessage("wrong");
         return this.result;
     }
 
