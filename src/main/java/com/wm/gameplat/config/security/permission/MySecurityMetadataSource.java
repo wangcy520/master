@@ -28,14 +28,13 @@ public class MySecurityMetadataSource implements FilterInvocationSecurityMetadat
     @Autowired
     private MenuInfoService menuInfoService;
 
-    private Map<String, Collection<ConfigAttribute>> map = null;
+    private Map<String, Collection<ConfigAttribute>> map = new HashMap<>(16);
 
     /**
      * 加载权限表中所有操作请求权限
      */
     public void loadResourceDefine() {
 
-        map = new HashMap<>(16);
         Collection<ConfigAttribute> configAttributes;
         ConfigAttribute cfg;
         // 获取启用的权限操作请求
@@ -84,7 +83,15 @@ public class MySecurityMetadataSource implements FilterInvocationSecurityMetadat
 
     @Override
     public Collection<ConfigAttribute> getAllConfigAttributes() {
-        return null;
+        Collection<ConfigAttribute> allAttributes = new HashSet<ConfigAttribute>();
+
+        for (Map.Entry<String, Collection<ConfigAttribute>> stringCollectionEntry : map.entrySet()) {
+            Iterator<ConfigAttribute> iterator = stringCollectionEntry.getValue().iterator();
+            if (iterator.hasNext()) {
+                allAttributes.add(iterator.next());
+            }
+        }
+        return allAttributes;
     }
 
     @Override
