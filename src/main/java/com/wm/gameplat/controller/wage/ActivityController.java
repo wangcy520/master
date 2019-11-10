@@ -4,6 +4,8 @@ package com.wm.gameplat.controller.wage;
 import com.wm.gameplat.core.domain.ActivityInfo;
 import com.wm.gameplat.core.service.IActivityService;
 
+import com.wm.gameplat.utils.ResultUtil;
+import com.wm.gameplat.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,10 +27,10 @@ public class ActivityController {
      */
     @GetMapping("/list")
     @ResponseBody
-    public List<ActivityInfo> selectActivityList(ActivityInfo activity) {
+    public Result selectActivityList(ActivityInfo activity) {
 
 
-        return iActivityService.selectActivityList(activity);
+        return ResultUtil.data(iActivityService.selectActivityList(activity));
 
     }
 
