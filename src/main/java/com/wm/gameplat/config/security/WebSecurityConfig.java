@@ -33,8 +33,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Slf4j
 @Configuration
-/*@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled =true)*/
+/*@EnableWebSecurity*/
+@EnableGlobalMethodSecurity(prePostEnabled =true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
