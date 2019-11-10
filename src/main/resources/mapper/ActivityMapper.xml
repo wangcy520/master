@@ -27,7 +27,7 @@
     </sql>
 
     <!-- 查询标签活动信息 -->
-    <select id="selectActivity" parameterType="com.wm.gameplat.core.domain.ActivityInfo" resultMap="ActivityResult">
+    <select id="selectActivityList" parameterType="com.wm.gameplat.core.domain.ActivityInfo" resultMap="ActivityResult">
         <include refid="selectActivityVo"/>
         <where>
             <if test="id != null ">                              AND id = #{id}</if>

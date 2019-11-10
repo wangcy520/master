@@ -16,6 +16,6 @@ public interface IActivityService {
      * @param  activityInfo 查询标签活动信息
      * @return 标签活动信息
      */
-    public List<ActivityInfo> selectActivity(ActivityInfo activityInfo);
+    public List<ActivityInfo> selectActivityList(ActivityInfo activityInfo);
 
 }
