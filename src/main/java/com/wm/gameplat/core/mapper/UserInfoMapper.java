@@ -1,6 +1,6 @@
-package com.wm.gameplat.config.core.mapper;
+package com.wm.gameplat.core.mapper;
 
-import com.wm.gameplat.config.core.domain.UserInfo;
+import com.wm.gameplat.core.domain.UserInfo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

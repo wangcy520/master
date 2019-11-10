@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wm.gameplat.core.mapper.ActivityMapper">
+
+    <resultMap type="com.wm.gameplat.core.domain.ActivityInfo" id="ActivityResult">
+        <id     property="id"                   column="id"                     />
+        <result property="superCode"            column="super_code"             />
+        <result property="description"          column="description"            />
+        <result property="types"                column="types"                  />
+        <result property="titleType"            column="title_type"             />
+        <result property="title"                column="title"                  />
+        <result property="contentType"          column="content_type"           />
+        <result property="content"              column="content"                />
+        <result property="orderNum"             column="order_num"              />
+        <result property="picIds"               column="pic_ids"                />
+        <result property="playerType"           column="player_type"            />
+        <result property="createBy"             column="create_by"              />
+        <result property="createTime"           column="create_time"            />
+        <result property="updateBy"             column="update_by"              />
+        <result property="updateTime"            column="update_time"             />
+
+    </resultMap>
+
+    <!-- 查询语句 -->
+    <sql id="selectSuperVo">
+        SELECT t.id, t.super_code, t.description, t.types, t.title_type, t.title, t.content_type,
+              t.content, t.order_num, t.pic_ids, t.player_type,  t.create_by, t.create_time, t.update_by, t.update_time
+		FROM tab_activity_info t
+    </sql>
+
+    <!-- 查询银行用户信息 -->
+    <select id="selectActivity" parameterType="com.wm.gameplat.core.domain.ActivityInfo" resultMap="ActivityResult">
+        <include refid="selectSuperVo"/>
+        <where>
+            <if test="id != null ">                              AND id = #{id}</if>
+            <if test="userName != null and userName != ''">      AND super_code LIKE concat('%', #{userName}, '%')</if>
+            <if test="realName != null and realName != ''">      AND description LIKE concat('%', #{realName}, '%')</if>
+            <if test="bankName != null and bankName != ''">      AND types = #{bankName} </if>
+            <if test="bankCode != null and bankCode!= ''">       AND title_type = #{bankCode}</if>
+            <if test="bankAddress != null and bankAddress != ''">AND title =  #{bankAddress}</if>
+            <if test="remark != null and remark != ''">          AND content_type = #{remark}</if>
+            <if test="createBy != null and createBy != ''">      AND content =  #{createBy}</if>
+            <if test="updateBy != null and updateBy != ''">      AND order_num = #{updateBy}</if>
+            <if test="remark != null and remark != ''">          AND remark = #{remark}</if>
+            <if test="createBy != null and createBy != ''">      AND create_by =  #{createBy}</if>
+            <if test="updateBy != null and updateBy != ''">      AND update_by = #{updateBy}</if>
+            <if test="updateBy != null and updateBy != ''">      AND update_by = #{updateBy}</if>
+            <if test="updateBy != null and updateBy != ''">      AND update_by = #{updateBy}</if>
+
+            <if test="startDate != null and startDate != ''"><!-- 开始时间检索 -->
+                AND date_format(create_time,'%y%m%d') &gt;= date_format(#{startDate},'%y%m%d')
+            </if>
+            <if test="endDate != null and endDate != ''"><!-- 结束时间检索 -->
+                AND date_format(create_time,'%y%m%d') &lt;= date_format(#{endDate},'%y%m%d')
+            </if>
+        </where>
+    </select>
+</mapper>

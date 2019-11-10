@@ -1,4 +1,4 @@
-package com.wm.gameplat.config.core.domain;
+package com.wm.gameplat.core.domain;
 
 import java.util.Date;
 

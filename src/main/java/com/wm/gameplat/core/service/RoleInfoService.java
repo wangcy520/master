@@ -1,7 +1,7 @@
-package com.wm.gameplat.config.core.service;
+package com.wm.gameplat.core.service;
 
 import com.github.pagehelper.PageInfo;
-import com.wm.gameplat.config.core.domain.RoleInfo;
+import com.wm.gameplat.core.domain.RoleInfo;
 
 import java.util.List;
 import java.util.Map;

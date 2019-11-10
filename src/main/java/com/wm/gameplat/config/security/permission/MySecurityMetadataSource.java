@@ -1,7 +1,7 @@
 package com.wm.gameplat.config.security.permission;
 
-import com.wm.gameplat.config.core.domain.MenuInfo;
-import com.wm.gameplat.config.core.service.MenuInfoService;
+import com.wm.gameplat.core.domain.MenuInfo;
+import com.wm.gameplat.core.service.MenuInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

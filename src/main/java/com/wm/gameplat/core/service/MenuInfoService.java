@@ -1,8 +1,8 @@
-package com.wm.gameplat.config.core.service;
+package com.wm.gameplat.core.service;
 
 
 import com.github.pagehelper.PageInfo;
-import com.wm.gameplat.config.core.domain.MenuInfo;
+import com.wm.gameplat.core.domain.MenuInfo;
 
 import java.util.List;
 import java.util.Map;

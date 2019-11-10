@@ -2,7 +2,7 @@ package com.wm.gameplat;
 
 
 import com.alibaba.fastjson.JSON;
-import com.wm.gameplat.config.core.service.UserInfoService;
+import com.wm.gameplat.core.service.UserInfoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

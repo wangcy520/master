@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.wm.gameplat.config.core.mapper.UserInfoMapper">
+<mapper namespace="com.wm.gameplat.core.mapper.UserInfoMapper">
 
-    <resultMap type="com.wm.gameplat.config.core.domain.UserInfo" id="resultMapOfUserInfo">
+    <resultMap type="com.wm.gameplat.core.domain.UserInfo" id="resultMapOfUserInfo">
         <result column="id" property="id"/>
         <result column="user_name" property="username"/>
         <result column="phone" property="phone"/>
@@ -39,7 +39,7 @@
     </select>
 
     <select id="findByExample" resultMap="resultMapOfUserInfo"
-            parameterType="com.wm.gameplat.config.core.domain.UserInfo">
+            parameterType="com.wm.gameplat.core.domain.UserInfo">
         select
         <include refid="FieldsOfUserInfo"/>
         from user_info
@@ -57,7 +57,7 @@
     </select>
 
     <select id="count" resultType="java.lang.Integer"
-            parameterType="com.wm.gameplat.config.core.domain.UserInfo">
+            parameterType="com.wm.gameplat.core.domain.UserInfo">
         select count(id) from user_info
         <where>
             <if test="id != null and id !=''">and id = #{id}</if>
@@ -110,7 +110,7 @@
         from user_info
     </select>
 
-    <insert id="save" parameterType="com.wm.gameplat.config.core.domain.UserInfo" useGeneratedKeys="true"
+    <insert id="save" parameterType="com.wm.gameplat.core.domain.UserInfo" useGeneratedKeys="true"
             keyProperty="id">
         insert into user_info(
         <include refid="FieldsOfUserInfoWithoutId"/>
@@ -118,7 +118,7 @@
         #{username}, #{phone}, #{password}, #{userType}, #{status}, #{registerMode}, #{createTime}, #{updateTime} )
     </insert>
 
-    <update id="update" parameterType="com.wm.gameplat.config.core.domain.UserInfo" useGeneratedKeys="true"
+    <update id="update" parameterType="com.wm.gameplat.core.domain.UserInfo" useGeneratedKeys="true"
             keyProperty="id">
         update user_info
         <set>
@@ -139,7 +139,7 @@
         delete from user_info where id = #{id}
     </delete>
 
-    <insert id="saveOrUpdate" parameterType="com.wm.gameplat.config.core.domain.UserInfo">
+    <insert id="saveOrUpdate" parameterType="com.wm.gameplat.core.domain.UserInfo">
         insert into user_info (
         <include refid="FieldsOfUserInfoWithoutId"/>
         ) values (

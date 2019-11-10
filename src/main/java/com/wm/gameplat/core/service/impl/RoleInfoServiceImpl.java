@@ -1,10 +1,10 @@
-package com.wm.gameplat.config.core.service.impl;
+package com.wm.gameplat.core.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wm.gameplat.config.core.domain.RoleInfo;
-import com.wm.gameplat.config.core.mapper.RoleInfoMapper;
-import com.wm.gameplat.config.core.service.RoleInfoService;
+import com.wm.gameplat.core.domain.RoleInfo;
+import com.wm.gameplat.core.mapper.RoleInfoMapper;
+import com.wm.gameplat.core.service.RoleInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

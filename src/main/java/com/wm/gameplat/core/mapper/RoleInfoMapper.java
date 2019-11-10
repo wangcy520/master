@@ -1,6 +1,6 @@
-package com.wm.gameplat.config.core.mapper;
+package com.wm.gameplat.core.mapper;
 
-import com.wm.gameplat.config.core.domain.RoleInfo;
+import com.wm.gameplat.core.domain.RoleInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
