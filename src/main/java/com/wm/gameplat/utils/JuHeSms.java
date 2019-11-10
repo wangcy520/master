@@ -20,15 +20,6 @@ public class JuHeSms {
     //配置您申请的KEY
     private static final String APPKEY ="ae8d61b0f83156295f6521101a2fcdb1";
 
-    //1.屏蔽词检查测
-    public static JSONObject getRequest1(){
-        String url ="http://v.juhe.cn/sms/black";
-        Map<String,Object> params = new HashMap<>();
-        params.put("word","");
-        params.put("key",APPKEY);
-        return getResult(url,params);
-    }
-
     public static JSONObject sendSms(){
         String url ="http://v.juhe.cn/sms/send";
         Map<String,Object> params = new HashMap<>();
