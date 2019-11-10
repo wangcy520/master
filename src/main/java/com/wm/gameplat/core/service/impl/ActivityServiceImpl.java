@@ -22,12 +22,12 @@ public class ActivityServiceImpl implements IActivityService {
     /**
      * 查询标签活动信息表
      *
-     * @param  activity 查询标签活动信息
+     * @param  activityInfo 查询标签活动信息
      * @return 标签活动信息
      */
     @Override
-    public List<ActivityInfo> selectActivity(ActivityInfo activity) {
-        return activityMapper.selectActivity(activity);
+    public List<ActivityInfo> selectActivity(ActivityInfo activityInfo) {
+        return activityMapper.selectActivity(activityInfo);
     }
 
 
