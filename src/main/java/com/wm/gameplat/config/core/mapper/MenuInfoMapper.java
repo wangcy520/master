@@ -1,6 +1,6 @@
-package com.wm.gameplat.controller.usercenter.mapper;
+package com.wm.gameplat.config.core.mapper;
 
-import com.wm.gameplat.controller.usercenter.domain.MenuInfo;
+import com.wm.gameplat.config.core.domain.MenuInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

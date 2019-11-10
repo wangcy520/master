@@ -1,9 +1,9 @@
 package com.wm.gameplat.config.security;
 
 import com.wm.gameplat.constant.CommonConstant;
-import com.wm.gameplat.controller.usercenter.domain.MenuInfo;
-import com.wm.gameplat.controller.usercenter.domain.RoleInfo;
-import com.wm.gameplat.controller.usercenter.domain.UserInfo;
+import com.wm.gameplat.config.core.domain.MenuInfo;
+import com.wm.gameplat.config.core.domain.RoleInfo;
+import com.wm.gameplat.config.core.domain.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;

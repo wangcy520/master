@@ -1,4 +1,4 @@
-package com.wm.gameplat.controller.usercenter.domain;
+package com.wm.gameplat.config.core.domain;
 
 import java.util.Date;
 import java.util.List;

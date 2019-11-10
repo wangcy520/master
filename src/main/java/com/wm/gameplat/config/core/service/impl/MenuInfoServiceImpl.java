@@ -1,10 +1,10 @@
-package com.wm.gameplat.controller.usercenter.service.impl;
+package com.wm.gameplat.config.core.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wm.gameplat.controller.usercenter.domain.MenuInfo;
-import com.wm.gameplat.controller.usercenter.mapper.MenuInfoMapper;
-import com.wm.gameplat.controller.usercenter.service.MenuInfoService;
+import com.wm.gameplat.config.core.domain.MenuInfo;
+import com.wm.gameplat.config.core.mapper.MenuInfoMapper;
+import com.wm.gameplat.config.core.service.MenuInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

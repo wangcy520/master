@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.wm.gameplat.controller.usercenter.mapper.MenuInfoMapper">
+<mapper namespace="com.wm.gameplat.config.core.mapper.MenuInfoMapper">
 
-    <resultMap type="com.wm.gameplat.controller.usercenter.domain.MenuInfo" id="resultMapOfMenuInfo">
+    <resultMap type="com.wm.gameplat.config.core.domain.MenuInfo" id="resultMapOfMenuInfo">
         <result column="menu_id" property="menuId"/>
         <result column="menu_name" property="menuName"/>
         <result column="title" property="title"/>
@@ -46,7 +46,7 @@
     </select>
 
     <select id="findByExample" resultMap="resultMapOfMenuInfo"
-            parameterType="com.wm.gameplat.controller.usercenter.domain.MenuInfo">
+            parameterType="com.wm.gameplat.config.core.domain.MenuInfo">
         select
         <include refid="FieldsOfMenuInfo"/>
         from menu_info
@@ -71,7 +71,7 @@
     </select>
 
     <select id="count" resultType="java.lang.Integer"
-            parameterType="com.wm.gameplat.controller.usercenter.domain.MenuInfo">
+            parameterType="com.wm.gameplat.config.core.domain.MenuInfo">
         select count(id) from menu_info
         <where>
             <if test="menuId != null and menuId !=''">and menu_id = #{menuId}</if>
@@ -145,7 +145,7 @@
         from menu_info
     </select>
 
-    <insert id="save" parameterType="com.wm.gameplat.controller.usercenter.domain.MenuInfo" useGeneratedKeys="true"
+    <insert id="save" parameterType="com.wm.gameplat.config.core.domain.MenuInfo" useGeneratedKeys="true"
             keyProperty="id">
         insert into menu_info(
         <include refid="FieldsOfMenuInfoWithoutId"/>
@@ -154,7 +154,7 @@
         #{status}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{remark} )
     </insert>
 
-    <update id="update" parameterType="com.wm.gameplat.controller.usercenter.domain.MenuInfo" useGeneratedKeys="true"
+    <update id="update" parameterType="com.wm.gameplat.config.core.domain.MenuInfo" useGeneratedKeys="true"
             keyProperty="id">
         update menu_info
         <set>
@@ -182,7 +182,7 @@
         delete from menu_info where id = #{id}
     </delete>
 
-    <insert id="saveOrUpdate" parameterType="com.wm.gameplat.controller.usercenter.domain.MenuInfo">
+    <insert id="saveOrUpdate" parameterType="com.wm.gameplat.config.core.domain.MenuInfo">
         insert into menu_info (
         <include refid="FieldsOfMenuInfoWithoutId"/>
         ) values (

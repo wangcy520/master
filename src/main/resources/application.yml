@@ -23,7 +23,7 @@ spring:
       connection-timeout: 30000
       connection-test-query: select 1
 mybatis:
-  type-aliases-package: com.wm.gameplat.controller.usercenter.domain
+  type-aliases-package: com.wm.gameplat.config.core.domain
   mapper-locations: classpath:mapper/*Mapper.xml
 captcha:
   image:

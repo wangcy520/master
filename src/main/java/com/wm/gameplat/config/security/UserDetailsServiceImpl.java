@@ -1,8 +1,8 @@
 package com.wm.gameplat.config.security;
 
 import com.wm.gameplat.config.exception.LoginFailLimitException;
-import com.wm.gameplat.controller.usercenter.domain.UserInfo;
-import com.wm.gameplat.controller.usercenter.service.UserInfoService;
+import com.wm.gameplat.config.core.domain.UserInfo;
+import com.wm.gameplat.config.core.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -11,7 +11,6 @@ import com.wm.gameplat.config.security.validate.ImageValidateFilter;
 import com.wm.gameplat.utils.SecurityUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,7 +24,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.util.ArrayList;
 
 /**
  * Security 核心配置类
@@ -35,8 +33,7 @@ import java.util.ArrayList;
  */
 @Slf4j
 @Configuration
-//@EnableWebSecurity
-@EnableAutoConfiguration
+@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled =true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 

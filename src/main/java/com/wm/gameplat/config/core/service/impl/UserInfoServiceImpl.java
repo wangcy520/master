@@ -1,13 +1,13 @@
-package com.wm.gameplat.controller.usercenter.service.impl;
+package com.wm.gameplat.config.core.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wm.gameplat.controller.usercenter.domain.RoleInfo;
-import com.wm.gameplat.controller.usercenter.domain.UserInfo;
-import com.wm.gameplat.controller.usercenter.mapper.UserInfoMapper;
-import com.wm.gameplat.controller.usercenter.service.MenuInfoService;
-import com.wm.gameplat.controller.usercenter.service.RoleInfoService;
-import com.wm.gameplat.controller.usercenter.service.UserInfoService;
+import com.wm.gameplat.config.core.domain.RoleInfo;
+import com.wm.gameplat.config.core.domain.UserInfo;
+import com.wm.gameplat.config.core.mapper.UserInfoMapper;
+import com.wm.gameplat.config.core.service.MenuInfoService;
+import com.wm.gameplat.config.core.service.RoleInfoService;
+import com.wm.gameplat.config.core.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
