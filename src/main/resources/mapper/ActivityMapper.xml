@@ -22,7 +22,7 @@
     <!-- 查询语句 -->
     <sql id="selectActivityVo">
         SELECT t.id, t.super_code, t.description, t.types, t.title_type, t.title, t.content_type,
-              t.content, t.order_num, t.pic_ids, t.player_type,  t.create_by, t.create_time, t.update_by, t.update_time
+              t.content, t.order_num,  t.create_by, t.create_time, t.update_by, t.update_time
 		FROM tab_activity_info t
     </sql>
 

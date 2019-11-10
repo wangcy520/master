@@ -71,6 +71,17 @@ public class ActivityInfo   {
      */
     private String updateTime;
 
+    /**
+     * 开始时间
+     */
+    private String startDate;
+
+    /**
+     * 结束时间
+     */
+    private String endDate;
+
+
 
     public Long getId() {
         return id;
@@ -176,6 +187,22 @@ public class ActivityInfo   {
         this.updateTime = updateTime;
     }
 
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
     @Override
     public String toString() {
         return "ActivityInfo{" +
@@ -192,6 +219,8 @@ public class ActivityInfo   {
                 ", createTime='" + createTime + '\'' +
                 ", updateBy='" + updateBy + '\'' +
                 ", updateTime='" + updateTime + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
                 '}';
     }
 }
