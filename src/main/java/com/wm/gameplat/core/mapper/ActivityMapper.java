@@ -13,7 +13,7 @@ public interface ActivityMapper {
 
 
     /**
-     * 查询标签活动信息表
+     * 查询标签活动信息
      *
      * @param  activity 查询标签活动信息
      * @return 标签活动信息

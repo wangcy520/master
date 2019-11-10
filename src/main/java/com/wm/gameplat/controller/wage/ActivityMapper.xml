@@ -12,41 +12,36 @@
         <result property="contentType"          column="content_type"           />
         <result property="content"              column="content"                />
         <result property="orderNum"             column="order_num"              />
-        <result property="picIds"               column="pic_ids"                />
-        <result property="playerType"           column="player_type"            />
         <result property="createBy"             column="create_by"              />
         <result property="createTime"           column="create_time"            />
         <result property="updateBy"             column="update_by"              />
-        <result property="updateTime"            column="update_time"             />
+        <result property="updateTime"           column="update_time"            />
 
     </resultMap>
 
     <!-- 查询语句 -->
-    <sql id="selectSuperVo">
+    <sql id="selectActivityVo">
         SELECT t.id, t.super_code, t.description, t.types, t.title_type, t.title, t.content_type,
               t.content, t.order_num, t.pic_ids, t.player_type,  t.create_by, t.create_time, t.update_by, t.update_time
 		FROM tab_activity_info t
     </sql>
 
-    <!-- 查询银行用户信息 -->
+    <!-- 查询标签活动信息 -->
     <select id="selectActivity" parameterType="com.wm.gameplat.core.domain.ActivityInfo" resultMap="ActivityResult">
-        <include refid="selectSuperVo"/>
+        <include refid="selectActivityVo"/>
         <where>
             <if test="id != null ">                              AND id = #{id}</if>
-            <if test="userName != null and userName != ''">      AND super_code LIKE concat('%', #{userName}, '%')</if>
-            <if test="realName != null and realName != ''">      AND description LIKE concat('%', #{realName}, '%')</if>
-            <if test="bankName != null and bankName != ''">      AND types = #{bankName} </if>
-            <if test="bankCode != null and bankCode!= ''">       AND title_type = #{bankCode}</if>
-            <if test="bankAddress != null and bankAddress != ''">AND title =  #{bankAddress}</if>
-            <if test="remark != null and remark != ''">          AND content_type = #{remark}</if>
-            <if test="createBy != null and createBy != ''">      AND content =  #{createBy}</if>
-            <if test="updateBy != null and updateBy != ''">      AND order_num = #{updateBy}</if>
-            <if test="remark != null and remark != ''">          AND remark = #{remark}</if>
-            <if test="createBy != null and createBy != ''">      AND create_by =  #{createBy}</if>
+            <if test="superCode != null and superCode != ''">    AND super_code = #{superCode}</if>
+            <if test="description != null and description != ''">AND description  #{description}</if>
+            <if test="types != null and types != ''">            AND types = #{types} </if>
+            <if test="titleType != null and titleType!= ''">     AND title_type = #{titleType}</if>
+            <if test="title != null and title != ''">            AND title =  #{title}</if>
+            <if test="contentType != null and contentType != ''">AND content_type = #{contentType}</if>
+            <if test="content != null and content != ''">        AND content =  #{content}</if>
+            <if test="orderNum != null and orderNum != ''">      AND order_num = #{orderNum}</if>
+            <if test="createBy != null and createBy != ''">      AND create_by = #{createBy}</if>
             <if test="updateBy != null and updateBy != ''">      AND update_by = #{updateBy}</if>
-            <if test="updateBy != null and updateBy != ''">      AND update_by = #{updateBy}</if>
-            <if test="updateBy != null and updateBy != ''">      AND update_by = #{updateBy}</if>
-
+            <if test="updateTime != null and updateTime != ''">  AND update_time = #{updateTime}</if>
             <if test="startDate != null and startDate != ''"><!-- 开始时间检索 -->
                 AND date_format(create_time,'%y%m%d') &gt;= date_format(#{startDate},'%y%m%d')
             </if>
