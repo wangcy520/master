@@ -83,8 +83,8 @@ public class JuHeSms {
                 try {
                     DataOutputStream out = new DataOutputStream(conn.getOutputStream());
                     out.writeBytes(urlEncode(params));
-                } catch (Exception e) {
-                    // TODO: handle exception
+                } catch (Exception ignored) {
+
                 }
             }
             InputStream is = conn.getInputStream();
