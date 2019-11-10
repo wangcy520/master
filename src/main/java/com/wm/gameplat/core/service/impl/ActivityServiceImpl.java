@@ -26,8 +26,8 @@ public class ActivityServiceImpl implements IActivityService {
      * @return 标签活动信息
      */
     @Override
-    public List<ActivityInfo> selectActivity(ActivityInfo activityInfo) {
-        return activityMapper.selectActivity(activityInfo);
+    public List<ActivityInfo> selectActivityList(ActivityInfo activityInfo) {
+        return activityMapper.selectActivityList(activityInfo);
     }
 
 

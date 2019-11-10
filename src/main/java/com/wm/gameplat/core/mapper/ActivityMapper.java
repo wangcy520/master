@@ -18,7 +18,7 @@ public interface ActivityMapper {
      * @param  activity 查询标签活动信息
      * @return 标签活动信息
      */
-    public List<ActivityInfo> selectActivity(ActivityInfo activity);
+    public List<ActivityInfo> selectActivityList(ActivityInfo activity);
 
 
 
