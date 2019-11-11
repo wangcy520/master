@@ -8,6 +8,7 @@ import com.wm.gameplat.config.security.jwt.JWTAuthenticationFilter;
 import com.wm.gameplat.config.security.jwt.RestAccessDeniedHandler;
 import com.wm.gameplat.config.security.permission.MyFilterSecurityInterceptor;
 import com.wm.gameplat.config.security.validate.ImageValidateFilter;
+import com.wm.gameplat.config.security.validate.SmsValidateFilter;
 import com.wm.gameplat.utils.SecurityUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,10 +63,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CaptchaProperties captchaProperties;
 
-    /*@Autowired
+    @Autowired
     private SmsValidateFilter smsValidateFilter;
 
-    @Autowired
+   /* @Autowired
     private VaptchaValidateFilter vaptchaValidateFilter;
 
     @Autowired
@@ -129,11 +130,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 图形验证码过滤器
                 .addFilterBefore(imageValidateFilter, UsernamePasswordAuthenticationFilter.class)
                 // 短信验证码过滤器
-                /* .addFilterBefore(smsValidateFilter, UsernamePasswordAuthenticationFilter.class)
-                 // vaptcha验证码过滤器
-                 .addFilterBefore(vaptchaValidateFilter, UsernamePasswordAuthenticationFilter.class)
-                 // email验证码过滤器
-                 .addFilterBefore(emailValidateFilter, UsernamePasswordAuthenticationFilter.class)*/
+                .addFilterBefore(smsValidateFilter, UsernamePasswordAuthenticationFilter.class)
+                /* // vaptcha验证码过滤器
+                .addFilterBefore(vaptchaValidateFilter, UsernamePasswordAuthenticationFilter.class)
+                // email验证码过滤器
+                .addFilterBefore(emailValidateFilter, UsernamePasswordAuthenticationFilter.class)*/
                 // 添加自定义权限过滤器
                 .addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class)
                 // 添加JWT认证过滤器

@@ -63,7 +63,7 @@ public class AuthenticationFailHandler extends SimpleUrlAuthenticationFailureHan
     /**
      * 判断用户登陆错误次数
      */
-    public boolean recordLoginTime(String username) {
+    private void recordLoginTime(String username) {
 
         String key = "loginTimeLimit:" + username;
         String flagKey = "loginFailFlag:" + username;
@@ -76,8 +76,6 @@ public class AuthenticationFailHandler extends SimpleUrlAuthenticationFailureHan
         redisTemplate.opsForValue().set(key, String.valueOf(loginFailTime), tokenProperties.getLoginAfterTime(), TimeUnit.MINUTES);
         if (loginFailTime >= tokenProperties.getLoginTimeLimit()) {
             redisTemplate.opsForValue().set(flagKey, "fail", tokenProperties.getLoginAfterTime(), TimeUnit.MINUTES);
-            return false;
         }
-        return true;
     }
 }

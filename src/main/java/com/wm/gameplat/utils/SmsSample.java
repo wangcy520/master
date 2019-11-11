@@ -40,7 +40,7 @@ public class SmsSample {
         if (stringRedisTemplate.opsForValue().get(CommonConstant.PRE_SMS + ipAddr) != null) {
             return ResultUtil.error("请求太过频繁，请一分钟后再试！");
         }
-        String testContent = String.format("【短信宝】您的验证码是%s,30秒内有效。", smsCode);//短信模板
+        String testContent = String.format("【短信宝】您的验证码是%s,5分钟内有效。", smsCode);//短信模板
         String httpUrl = "http://api.smsbao.com/sms";
         String httpArg = "u=" + testUsername + "&" +
                 "p=" + md5(testPassword) + "&" +
@@ -52,7 +52,7 @@ public class SmsSample {
             stringRedisTemplate.opsForValue().set(CommonConstant.PRE_SMS + ipAddr, "", 1L, TimeUnit.MINUTES);
             return  ResultUtil.success();
         }
-        return   ResultUtil.error();
+        return   ResultUtil.error("验证码发送失败，请重试");
     }
 
     private static String request(String httpUrl, String httpArg) {
@@ -108,8 +108,6 @@ public class SmsSample {
 
     private static String encodeUrlString(String str) {
         String strRet;
-        if (str == null)
-            return null;
         try {
             strRet = java.net.URLEncoder.encode(str, "UTF-8");
         } catch (Exception e) {
