@@ -7,10 +7,10 @@ import com.wm.gameplat.utils.ResultUtil;
 import com.wm.gameplat.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -30,20 +30,17 @@ public class ActivityController {
     @GetMapping("/list")
     @ResponseBody
     public Result selectActivityList(ActivityInfo activity) {
-        List<ActivityInfo> collect =iActivityService.selectActivityList(activity);
-        List<ActivityInfo> notices =new ArrayList<>();
-        List<ActivityInfo>  activitys = new ArrayList<>();
-        collect.forEach(item ->{
-                if(item.getTypes().equals("0")){
-                    notices.add(item);
-                }else {
-                    activitys.add(item);
-                }
+        List<ActivityInfo> activityInfoList = iActivityService.selectActivityList(activity);
+        Map<String, List<ActivityInfo>> collect = activityInfoList.stream().collect(Collectors.groupingBy(ActivityInfo::getTypes));
+        Map<String, List> map = new HashMap<>();
+        collect.forEach((key, val) -> {
+            if ("0".equals(key)) {
+                map.put("notices", val);
+            } else {
+                map.put("activity", val);
+            }
         });
-        Map<String, List> mmap = new HashMap<>();
-        mmap.put("notices",notices);
-        mmap.put("activitys",activitys);
-        return ResultUtil.data(mmap);
+        return ResultUtil.data(map);
     }
 
 }
