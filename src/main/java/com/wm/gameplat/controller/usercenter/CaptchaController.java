@@ -1,4 +1,4 @@
-package com.wm.gameplat.controller.usercenter.controller;
+package com.wm.gameplat.controller.usercenter;
 
 
 import com.wm.gameplat.utils.CreateVerifyCode;
