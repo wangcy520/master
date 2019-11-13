@@ -23,6 +23,26 @@ public interface ExtendLoginMapper {
 	List<ExtendLoginInfo> selectExtendLoginList(Map<String, Object> params);
 
 
+	/**
+	 * 查询推广注册信息表
+	 *
+	 * @param  extendLogin	查询推广注册信息
+	 * @return 推广注册信息
+	 */
+
+	int updateExtendLogin(ExtendLoginInfo extendLogin);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	List<ExtendLoginInfo> findByIds(List<Long> ids);
@@ -37,7 +57,7 @@ public interface ExtendLoginMapper {
 
 	List<ExtendLoginInfo> findAll();
 
-    int update(ExtendLoginInfo extendLogin);
+
 
     int delete(Long id);
     

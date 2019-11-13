@@ -40,6 +40,25 @@ public class ExtendLoginServiceImpl implements ExtendLoginService {
         Map<String, Object> params = new HashMap<>();
         return extendLoginMapper.selectExtendLoginList(params);
     }
+    /**
+     * 查询推广注册信息表
+     *
+     * @param  extendLogin	查询推广注册信息
+     * @return 推广注册信息
+     */
+    @Override
+    public int updateExtendLogin(ExtendLoginInfo extendLogin) {
+        return extendLoginMapper.updateExtendLogin(extendLogin);
+    }
+
+
+
+
+
+
+
+
+
 
     @Override
     public List<ExtendLoginInfo> findByExample(ExtendLoginInfo extendLogin) {

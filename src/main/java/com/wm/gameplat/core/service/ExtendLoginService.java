@@ -22,6 +22,22 @@ public interface ExtendLoginService {
     List<ExtendLoginInfo> selectExtendLoginList(ExtendLoginInfo extendLogin);
 
 
+    /**
+     * 修改推广注册信息表
+     *
+     * @param  extendLogin	修改推广注册信息
+     * @return 推广注册信息
+     */
+    int updateExtendLogin(ExtendLoginInfo extendLogin);
+
+
+
+
+
+
+
+
+
 
 
 
