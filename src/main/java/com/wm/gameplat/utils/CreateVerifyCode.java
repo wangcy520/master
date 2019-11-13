@@ -313,7 +313,7 @@ public class CreateVerifyCode {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             ImageIO.write(buffImg, "jpg", outputStream);
             String base64Img = Base64.encode(outputStream.toByteArray());
-            String res = "data:image/jpg;base64," + base64Img.toString();
+            String res = "data:image/jpg;base64," + base64Img;
             outputStream.close();
             return res;
         } catch (IOException e) {
