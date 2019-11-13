@@ -22,6 +22,14 @@ public interface ActivityMapper {
 
 
 
+    /**
+     * 新增标签活动信息
+     *
+     * @param activity 新增标签活动信息
+     * @return 标签活动信息
+     */
+
+    public int insertActivity(ActivityInfo activity);
 
 
 }

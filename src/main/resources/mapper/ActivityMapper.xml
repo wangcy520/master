@@ -50,4 +50,39 @@
             </if>
         </where>
     </select>
+
+    <!-- 新增标签活动信息 -->
+    <insert id="insertActivity" parameterType="com.wm.gameplat.core.domain.ActivityInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tab_activity_info (
+        <if test="id != null ">id,</if>
+        <if test="superCode != null and superCode != '' ">super_code,</if>
+        <if test="description != null and description != '' ">description,</if>
+        <if test="types != null and types != ''">types,</if>
+        <if test="titleType != null and titleType != -1 ">title_type,</if>
+        <if test="title != null and title != '' ">title,</if>
+        <if test="contentType != null and contentType != '' ">content_type</if>
+        <if test="content != null and content != '' ">content,</if>
+        <if test="orderNum != null and orderNum != -1 ">order_num,</if>
+        <if test="createBy != null and createBy != '' ">create_by,</if>
+        <if test="updateBy != null and updateBy != ''">update_by,</if>
+        <if test="updateTime != null and updateTime != ''">update_time,</if>
+        create_time
+        )VALUES (
+        <if test="id != null ">#{id},</if>
+        <if test="superCode != null and superCode != ''">#{superCode},</if>
+        <if test="description != null and description != ''">#{description},</if>
+        <if test="types != null and types != ''">#{types},</if>
+        <if test="titleType != null and titleType != -1">#{titleType}, </if>
+        <if test="title != null and title != ''">#{title},</if>
+        <if test="contentType != null and contentType != ''">#{contentType},</if>
+        <if test="content != null and content != '' ">#{content}, </if>
+        <if test="orderNum != null and orderNum != '' ">#{orderNum}, </if>
+        <if test="createBy != null and createBy != ''">#{createBy},</if>
+        <if test="updateBy != null and updateBy != ''">#{updateBy},</if>
+        <if test="updateTime != null and updateTime != ''">#{updateTime},</if>
+        sysdate()
+        )
+    </insert>
 </mapper>
+
+

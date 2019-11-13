@@ -18,4 +18,13 @@ public interface IActivityService {
      */
     public List<ActivityInfo> selectActivityList(ActivityInfo activityInfo);
 
+
+    /**
+     * 新增标签活动信息表
+     *
+     * @param activity 新增标签活动信息
+     * @return 标签活动信息
+     */
+    public int insertActivity(ActivityInfo activity);
+
 }

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.wm.gameplat.core.mapper.ExtendLoginMapper">
+
+    <resultMap type="com.wm.gameplat.core.domain.ExtendLoginInfo" id="resultExtendLogin">
+
+                    <result column="user_id" property="userId"/>
+                    <result column="user_name" property="userName"/>
+                    <result column="extend_id" property="extendId"/>
+                    <result column="extend_html" property="extendHtml"/>
+                    <result column="extend_code" property="extendCode"/>
+                    <result column="extend_index" property="extendIndex"/>
+                    <result column="extend_aim_type" property="extendAimType"/>
+                    <result column="extend_proportion" property="extendProportion"/>
+                    <result column="visit_count" property="visitCount"/>
+                    <result column="register_count" property="registerCount"/>
+                    <result column="create_by" property="createBy"/>
+                    <result column="create_time" property="createTime"/>
+                    <result column="update_by" property="updateBy"/>
+                    <result column="update_time" property="updateTime"/>
+            </resultMap>
+
+    <sql id="FieldsOfTabExtendLogin">user_id, user_name, extend_id, extend_html, extend_code, extend_index, extend_aim_type, extend_proportion, visit_count,
+                    register_count, create_by, create_time, update_by, update_time</sql>
+
+    <sql id="FieldsOfTabExtendLoginWithoutId">, user_iduser_name, extend_id, extend_html, extend_code, extend_index, extend_aim_type, extend_proportion,
+                      visit_count, register_count, create_by, create_time, update_by, update_time</sql>
+
+
+
+    <select id="findByIds" resultMap="resultExtendLogin" parameterType="java.util.List">
+        select
+        <include refid="FieldsOfTabExtendLogin"/>
+        from tab_extend_login where id in
+        <foreach item="item" index="index" collection="list" open="(" separator=", " close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="findByExample" resultMap="resultExtendLogin" parameterType="com.wm.gameplat.core.domain.ExtendLoginInfo">
+        select
+        <include refid="FieldsOfTabExtendLogin"/>
+        from tab_extend_login
+        <where>
+                            <if test="userId != null and userId != ''"> and user_id = #{userId}</if>
+                            <if test="userName != null and userName != ''"> and user_name = #{userName}</if>
+                            <if test="extendId != null and extendId != ''"> and extend_id = #{extendId}</if>
+                            <if test="extendHtml != null and extendHtml != ''"> and extend_html = #{extendHtml}</if>
+                            <if test="extendCode != null and extendCode != ''"> and extend_code = #{extendCode}</if>
+                            <if test="extendIndex != null and extendIndex != ''"> and extend_index = #{extendIndex}</if>
+                            <if test="extendAimType != null and extendAimType != ''"> and extend_aim_type = #{extendAimType}</if>
+                            <if test="extendProportion != null and extendProportion != ''"> and extend_proportion = #{extendProportion}</if>
+                            <if test="visitCount != null and visitCount != ''"> and visit_count = #{visitCount}</if>
+                            <if test="registerCount != null and registerCount != ''"> and register_count = #{registerCount}</if>
+                            <if test="createBy != null and createBy != ''"> and create_by = #{createBy}</if>
+                            <if test="createTime != null and createTime != ''"> and create_time = #{createTime}</if>
+                            <if test="updateBy != null and updateBy != ''"> and update_by = #{updateBy}</if>
+                            <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime}</if>
+                    </where>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer" parameterType="com.wm.gameplat.core.domain.ExtendLoginInfo">
+        select count(id) from tab_extend_login
+        <where>
+           <if test="userId != null and userId !=''"> and user_id = #{userId}</if>
+           <if test="userName != null and userName !=''"> and user_name = #{userName}</if>
+           <if test="extendId != null and extendId !=''"> and extend_id = #{extendId}</if>
+           <if test="extendHtml != null and extendHtml !=''"> and extend_html = #{extendHtml}</if>
+           <if test="extendCode != null and extendCode !=''"> and extend_code = #{extendCode}</if>
+           <if test="extendIndex != null and extendIndex !=''"> and extend_index = #{extendIndex}</if>
+           <if test="extendAimType != null and extendAimType !=''"> and extend_aim_type = #{extendAimType}</if>
+           <if test="extendProportion != null and extendProportion !=''"> and extend_proportion = #{extendProportion}</if>
+           <if test="visitCount != null and visitCount !=''"> and visit_count = #{visitCount}</if>
+           <if test="registerCount != null and registerCount !=''"> and register_count = #{registerCount}</if>
+           <if test="createBy != null and createBy !=''"> and create_by = #{createBy}</if>
+           <if test="createTime != null and createTime !=''"> and create_time = #{createTime}</if>
+           <if test="updateBy != null and updateBy !=''"> and update_by = #{updateBy}</if>
+           <if test="updateTime != null and updateTime !=''"> and update_time = #{updateTime}</if>
+        </where>
+    </select>
+
+    <!-- 按参数查询推广信息 -->
+    <select id="selectExtendLoginList" resultMap="resultExtendLogin" parameterType="java.util.Map">
+        select
+        <include refid="FieldsOfTabExtendLogin"/>
+        from tab_extend_login
+        <where>
+            <if test="userId != null and userId != '' "> and user_id = #{userId}</if>
+            <if test="userName != null and userName != '' "> and user_name = #{userName}</if>
+            <if test="extendId != null and extendId != '' "> and extend_id = #{extendId}</if>
+            <if test="extendHtml != null and extendHtml != '' "> and extend_html = #{extendHtml}</if>
+            <if test="extendCode != null and extendCode != '' "> and extend_code = #{extendCode}</if>
+            <if test="extendIndex != null and extendIndex != '' "> and extend_index = #{extendIndex}</if>
+            <if test="extendAimType != null and extendAimType != '' "> and extend_aim_type = #{extendAimType}</if>
+            <if test="extendProportion != null and extendProportion != '' "> and extend_proportion = #{extendProportion}</if>
+            <if test="visitCount != null and visitCount != '' "> and visit_count = #{visitCount}</if>
+            <if test="registerCount != null and registerCount != '' "> and register_count = #{registerCount}</if>
+            <if test="createBy != null and createBy != '' "> and create_by = #{createBy}</if>
+            <if test="createTime != null and createTime != '' "> and create_time = #{createTime}</if>
+            <if test="updateBy != null and updateBy != '' "> and update_by = #{updateBy}</if>
+            <if test="updateTime != null and updateTime != '' "> and update_time = #{updateTime}</if>
+       </where>
+    </select>
+
+    <select id="countByParams" resultType="java.lang.Integer" parameterType="java.util.Map">
+        select count(id) from tab_extend_login
+        <where>
+            <if test="userId != null and userId != '' "> and user_id = #{userId}</if>
+            <if test="userName != null and userName != '' "> and user_name = #{userName}</if>
+            <if test="extendId != null and extendId != '' "> and extend_id = #{extendId}</if>
+            <if test="extendHtml != null and extendHtml != '' "> and extend_html = #{extendHtml}</if>
+            <if test="extendCode != null and extendCode != '' "> and extend_code = #{extendCode}</if>
+            <if test="extendIndex != null and extendIndex != '' "> and extend_index = #{extendIndex}</if>
+            <if test="extendAimType != null and extendAimType != '' "> and extend_aim_type = #{extendAimType}</if>
+            <if test="extendProportion != null and extendProportion != '' "> and extend_proportion = #{extendProportion}</if>
+            <if test="visitCount != null and visitCount != '' "> and visit_count = #{visitCount}</if>
+            <if test="registerCount != null and registerCount != '' "> and register_count = #{registerCount}</if>
+            <if test="createBy != null and createBy != '' "> and create_by = #{createBy}</if>
+            <if test="createTime != null and createTime != '' "> and create_time = #{createTime}</if>
+            <if test="updateBy != null and updateBy != '' "> and update_by = #{updateBy}</if>
+            <if test="updateTime != null and updateTime != '' "> and update_time = #{updateTime}</if>
+                                    </where>
+    </select>
+
+    <select id="findAll" resultMap="resultExtendLogin">
+        select
+        <include refid="FieldsOfTabExtendLogin"/>
+        from tab_extend_login
+    </select>
+
+    <!--<insert id="save" parameterType="com.wm.gameplat.core.domain.ExtendLoginInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into tab_extend_login(
+        <include refid="FieldsOfTabExtendLoginWithoutId"/>
+        ) values (
+        , #{userId}#{userName}, #{extendId}, #{extendHtml}, #{extendCode}, #{extendIndex}, #{extendAimType}, #{extendProportion}, #{visitCount}, #{registerCount}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}        )
+    </insert>-->
+
+    <update id="update" parameterType="com.wm.gameplat.core.domain.ExtendLoginInfo" useGeneratedKeys="true" keyProperty="id">
+        update tab_extend_login
+        <set>
+            <if test="userId != null and userId != '' "> user_id = #{userId},</if>
+            <if test="userName != null and userName != '' "> user_name = #{userName},</if>
+            <if test="extendId != null and extendId != '' "> extend_id = #{extendId},</if>
+            <if test="extendHtml != null and extendHtml != '' "> extend_html = #{extendHtml},</if>
+            <if test="extendCode != null and extendCode != '' "> extend_code = #{extendCode},</if>
+            <if test="extendIndex != null and extendIndex != '' "> extend_index = #{extendIndex},</if>
+            <if test="extendAimType != null and extendAimType != '' "> extend_aim_type = #{extendAimType},</if>
+            <if test="extendProportion != null and extendProportion != '' "> extend_proportion = #{extendProportion},</if>
+            <if test="visitCount != null and visitCount != '' "> visit_count = #{visitCount},</if>
+            <if test="registerCount != null and registerCount != '' "> register_count = #{registerCount},</if>
+            <if test="createBy != null and createBy != '' "> create_by = #{createBy},</if>
+            <if test="createTime != null and createTime != '' "> create_time = #{createTime},</if>
+            <if test="updateBy != null and updateBy != '' "> update_by = #{updateBy},</if>
+            <if test="updateTime != null and updateTime != '' "> update_time = #{updateTime},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from tab_extend_login where id = #{id}
+    </delete>
+
+    <insert id="saveOrUpdate" parameterType="com.wm.gameplat.core.domain.ExtendLoginInfo">
+        insert into tab_extend_login (
+        <include refid="FieldsOfTabExtendLoginWithoutId"/>
+        ) values (
+        , #{userId}#{userName}, #{extendId}, #{extendHtml}, #{extendCode}, #{extendIndex}, #{extendAimType}, #{extendProportion}, #{visitCount}, #{registerCount}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}        )
+        on duplicate key update
+        , user_id=#{userId}user_name=#{userName}, extend_id=#{extendId}, extend_html=#{extendHtml}, extend_code=#{extendCode}, extend_index=#{extendIndex}, extend_aim_type=#{extendAimType}, extend_proportion=#{extendProportion}, visit_count=#{visitCount}, register_count=#{registerCount}, create_by=#{createBy}, create_time=#{createTime}, update_by=#{updateBy}, update_time=#{updateTime}    </insert>
+
+    <insert id="batchSave" parameterType="java.util.List">
+        insert into tab_extend_login(
+        <include refid="FieldsOfTabExtendLoginWithoutId"/>
+        ) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (, #{item.userId}#{item.userName}, #{item.extendId}, #{item.extendHtml}, #{item.extendCode}, #{item.extendIndex}, #{item.extendAimType}, #{item.extendProportion}, #{item.visitCount}, #{item.registerCount}, #{item.createBy}, #{item.createTime}, #{item.updateBy}, #{item.updateTime})
+        </foreach>
+    </insert>
+
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update tab_extend_login
+            <set>
+                    ,user_id=#{item.userId}user_name=#{item.userName},extend_id=#{item.extendId},extend_html=#{item.extendHtml},
+                extend_code=#{item.extendCode},extend_index=#{item.extendIndex},extend_aim_type=#{item.extendAimType},
+                extend_proportion=#{item.extendProportion},visit_count=#{item.visitCount},register_count=#{item.registerCount},
+                create_by=#{item.createBy},create_time=#{item.createTime},update_by=#{item.updateBy},update_time=#{item.updateTime}</set>
+            where id = #{item.id}
+        </foreach>
+
+    </update>
+
+    <delete id="batchDelete" parameterType="java.util.List">
+        delete from tab_extend_login where id in
+        <foreach item="item" index="index" collection="list" open="(" separator=", " close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+</mapper>
