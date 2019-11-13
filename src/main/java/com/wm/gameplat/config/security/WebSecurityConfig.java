@@ -24,6 +24,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsUtils;
 
 
 /**
@@ -98,7 +99,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/usercenter/needLogin")
                 // 登录请求url
-                .loginProcessingUrl("/usercenter/login")
+                .loginProcessingUrl("/api/login")
                 .permitAll()
                 // 成功处理类
                 .successHandler(successHandler)
@@ -112,15 +113,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .authorizeRequests()
+                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 // 任何请求
                 .anyRequest()
                 // 需要身份认证
                 .authenticated()
                 .and()
                 //  允许跨域
-                .cors().disable()
                 // 关闭跨站请求防护
                 .csrf().disable()
+                .cors().and()
                 // 前后端分离采用JWT 不需要session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()

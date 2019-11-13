@@ -7,7 +7,7 @@ public class TokenProperties {
     /**
      * 使用redis存储token
      */
-    private Boolean redis = true;
+    private Boolean redis = false;
 
     /**
      * 单点登陆

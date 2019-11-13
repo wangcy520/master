@@ -4,6 +4,7 @@ package com.wm.gameplat.controller.usercenter;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.wm.gameplat.config.exception.RunningException;
 import com.wm.gameplat.core.domain.UserInfo;
 import com.wm.gameplat.core.service.UserInfoService;
 import com.wm.gameplat.utils.ResultUtil;
@@ -64,10 +65,17 @@ public class UserController {
     public Result smsLogin(@RequestParam String mobile, @RequestParam String code){
         UserInfo byMobile = userInfoService.findByMobile(mobile);
         if (null ==byMobile){
-            throw new RuntimeException("手机号不存在");
+            throw new RunningException("手机号不存在");
         }
         String token = securityUtil.getToken(byMobile.getUsername(), false);
         return ResultUtil.success(token);
     }
+
+    @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
+    public Result userInfo(){
+        UserInfo currUser = securityUtil.getCurrUser();
+        return ResultUtil.data(currUser);
+    }
+
 
 }

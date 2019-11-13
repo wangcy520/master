@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -27,16 +28,17 @@ public class CaptchaController {
 
     @RequestMapping(value = "/init", method = RequestMethod.GET)
     public Result<Object> initCaptcha() {
-
         String captchaId = UUID.randomUUID().toString().replace("-","");
         String code =  CreateVerifyCode.randomStr(4);
         // 缓存验证码
         redisTemplate.opsForValue().set(captchaId, code,2L, TimeUnit.MINUTES);
-        return new ResultUtil<Object>().setData(captchaId);
+        CreateVerifyCode vCode = new CreateVerifyCode(116,36,4,10, code);
+        String imageBinary = vCode.getImageBinary();
+        return new ResultUtil<Object>().setData(imageBinary,captchaId);
     }
 
-    @RequestMapping(value = "/draw/{captchaId}", method = RequestMethod.GET)
-    public void drawCaptcha(@PathVariable("captchaId") String captchaId,
+    @RequestMapping(value = "/draw", method = RequestMethod.GET)
+    public void drawCaptcha(@RequestParam("captchaId") String captchaId,
                             HttpServletResponse response) throws IOException {
 
         // 得到验证码 生成指定验证码

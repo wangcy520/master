@@ -1,5 +1,7 @@
 package com.wm.gameplat.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class UserInfo {
     /**
      * 密码
      */
+    @JsonIgnore
     private String password;
 
     /**

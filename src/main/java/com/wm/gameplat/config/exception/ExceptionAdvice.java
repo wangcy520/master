@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ExceptionAdvice {
 
+    @ExceptionHandler(RunningException.class)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Result<Object> handleXbootException(RunningException e) {
+        return new ResultUtil<>().setErrorMsg(500, e.getMsg());
+    }
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public Result globalException(Exception e) {

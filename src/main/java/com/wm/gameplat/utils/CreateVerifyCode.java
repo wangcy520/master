@@ -1,10 +1,13 @@
 package com.wm.gameplat.utils;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;
+import com.wm.gameplat.config.exception.RunningException;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Random;
@@ -137,7 +140,7 @@ public class CreateVerifyCode {
     private void creatImage(String code) {
 
         if(StrUtil.isBlank(code)){
-            throw new RuntimeException("验证码为空或已过期，请重新获取");
+            throw new RunningException("验证码为空或已过期，请重新获取");
         }
         // 字体的宽度
         int fontWidth = width / codeCount;
@@ -303,6 +306,20 @@ public class CreateVerifyCode {
     public void write(OutputStream sos) throws IOException {
         ImageIO.write(buffImg, "png", sos);
         sos.close();
+    }
+
+    public  String getImageBinary(){
+        try {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ImageIO.write(buffImg, "jpg", outputStream);
+            String base64Img = Base64.encode(outputStream.toByteArray());
+            String res = "data:image/jpg;base64," + base64Img.toString();
+            outputStream.close();
+            return res;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public BufferedImage getBuffImg() {
