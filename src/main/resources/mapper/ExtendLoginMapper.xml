@@ -63,11 +63,80 @@
     </update>
 
 
-
-
-
-
-
+    <!-- 新增推广信息 -->
+    <insert id="addExtendLogin" parameterType="com.wm.gameplat.core.domain.ExtendLoginInfo">
+        INSERT INTO tab_extend_login(
+        <if test="userId != null  and userId != -1">
+            user_id,
+        </if>
+        <if test="userName != null  and userName != ''">
+            user_name,
+        </if>
+        <if test="extendId != null  and extendId != -1">
+            extend_id,
+        </if>
+        <if test="extendHtml != null  and extendHtml != ''">
+            extend_html,
+        </if>
+        <if test="extendCode != null  and extendCode != ''">
+            extend_code,
+        </if>
+        <if test="extendIndex != null  and extendIndex != ''">
+            extend_index,
+        </if>
+        <if test="extendAimType != null  and extendAimType != ''">
+            extend_aim_type,
+        </if>
+        <if test="extendProportion != null  and extendProportion != ''">
+            extend_proportion,
+        </if>
+        <if test="visitCount != null  and visitCount != -1">
+            visit_count,
+        </if>
+        <if test="registerCount != null  and registerCount != -1">
+            register_count,
+        </if>
+        <if test="createBy != null  and createBy != ''">
+            create_by,
+        </if>
+        create_time)
+        VALUES
+        (
+        <if test="userId != null  and userId != -1">
+            #{userId},
+        </if>
+        <if test="userName != null  and userName != ''">
+            #{userName},
+        </if>
+        <if test="extendId != null  and extendId != -1">
+            #{extendId},
+        </if>
+        <if test="extendHtml != null  and extendHtml != ''">
+            #{extendHtml},
+        </if>
+        <if test="extendCode != null  and extendCode != ''">
+            #{extendCode},
+        </if>
+        <if test="extendIndex != null  and extendIndex != ''">
+            #{extendIndex},
+        </if>
+        <if test="extendAimType != null  and extendAimType != ''">
+            #{extendAimType},
+        </if>
+        <if test="extendProportion != null  and extendProportion != ''">
+            #{extendProportion},
+        </if>
+        <if test="visitCount != null  and visitCount != -1">
+            #{visitCount},
+        </if>
+        <if test="registerCount != null  and registerCount != -1">
+            #{registerCount},
+        </if>
+        <if test="createBy != null  and createBy != ''">
+            #{createBy},
+        </if>
+        sysdate())
+    </insert>
 
 
 

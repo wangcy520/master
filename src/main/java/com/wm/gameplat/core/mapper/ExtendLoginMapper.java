@@ -36,7 +36,13 @@ public interface ExtendLoginMapper {
 
 
 
-
+	/**
+	 * 新增游戏推广注册信息表
+	 *
+	 * @param extendLogin
+	 * @return 推广注册信息
+	 */
+	int addExtendLogin(ExtendLoginInfo extendLogin);
 
 
 

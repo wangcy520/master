@@ -8,6 +8,8 @@ import com.wm.gameplat.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import static com.wm.gameplat.utils.ResultUtil.error;
+
 
 /**
  * 推广注册表
@@ -37,11 +39,21 @@ public class ExtendLoginController {
      */
     @PostMapping(value = "/edit")
     public Result updateExtendLogin(ExtendLoginInfo extendLogin){
-       /* if(null == gm.getId()||"".equals(gm.getId())){
-            return error("ID必传");
+        //用户ID不可为空
+      if(null == extendLogin.getUserId()||"".equals(extendLogin.getUserId())){return error("ID必传");
         }
-        System.out.println(gm.toString());*/
+        System.out.println(extendLogin.toString());
         return ResultUtil.data(extendLoginService.updateExtendLogin(extendLogin));
+    }
+
+
+    /**
+     * 新增推广注册表
+     * @param extendLogin
+     */
+    @PostMapping(value = "/add")
+    public Result addExtendLogin(ExtendLoginInfo extendLogin){
+        return ResultUtil.data(extendLoginService.addExtendLogin(extendLogin));
     }
 
 }

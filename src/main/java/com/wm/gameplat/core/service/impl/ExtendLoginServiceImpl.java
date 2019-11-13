@@ -52,10 +52,10 @@ public class ExtendLoginServiceImpl implements ExtendLoginService {
     }
 
 
-
-
-
-
+    @Override
+    public int addExtendLogin(ExtendLoginInfo extendLogin) {
+        return extendLoginMapper.addExtendLogin(extendLogin);
+    }
 
 
 
