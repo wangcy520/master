@@ -3,7 +3,9 @@ package com.wm.gameplat.controller.wage;
 
 import com.wm.gameplat.core.domain.ExtendLoginInfo;
 import com.wm.gameplat.core.service.ExtendLoginService;
+import com.wm.gameplat.utils.CreateVerifyCode;
 import com.wm.gameplat.utils.ResultUtil;
+import com.wm.gameplat.utils.StringUtils;
 import com.wm.gameplat.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +18,7 @@ import static com.wm.gameplat.utils.ResultUtil.error;
  */
 
 @RestController
-@RequestMapping("/system/ExtendLogin")
+@RequestMapping("/system/extendLogin")
 public class ExtendLoginController {
 
     @Autowired
@@ -25,6 +27,7 @@ public class ExtendLoginController {
 
     /**
      * 查询推广注册表
+     *
      * @param extendLogin
      */
     @GetMapping("/list")
@@ -35,24 +38,29 @@ public class ExtendLoginController {
 
     /**
      * 修改推广注册表
+     *
      * @param extendLogin
      */
     @PostMapping(value = "/edit")
-    public Result updateExtendLogin(ExtendLoginInfo extendLogin){
+    public Result updateExtendLogin(ExtendLoginInfo extendLogin) {
         //用户ID不可为空
-      if(null == extendLogin.getUserId()||"".equals(extendLogin.getUserId())){return error("ID必传");
+        if (null == extendLogin.getUserId()) {
+            return error();
         }
-        System.out.println(extendLogin.toString());
         return ResultUtil.data(extendLoginService.updateExtendLogin(extendLogin));
     }
 
 
     /**
      * 新增推广注册表
+     *
      * @param extendLogin
      */
     @PostMapping(value = "/add")
-    public Result addExtendLogin(ExtendLoginInfo extendLogin){
+    public Result addExtendLogin(ExtendLoginInfo extendLogin) {
+        ExtendLoginInfo extendL = new ExtendLoginInfo();
+        extendL.setExtendHtml("http://baidu.com");
+        extendL.setExtendCode(StringUtils.isEmpty(extendL.getExtendCode()) ? CreateVerifyCode.randomStr(10) : extendL.getExtendCode());
         return ResultUtil.data(extendLoginService.addExtendLogin(extendLogin));
     }
 
