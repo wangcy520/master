@@ -58,9 +58,8 @@ public class ExtendLoginController {
      */
     @PostMapping(value = "/add")
     public Result addExtendLogin(ExtendLoginInfo extendLogin) {
-        ExtendLoginInfo extendL = new ExtendLoginInfo();
-        extendL.setExtendHtml("http://baidu.com");
-        extendL.setExtendCode(StringUtils.isEmpty(extendL.getExtendCode()) ? CreateVerifyCode.randomStr(10) : extendL.getExtendCode());
+        extendLogin.setExtendHtml("http://baidu.com");
+        extendLogin.setExtendCode(StringUtils.isEmpty(extendLogin.getExtendCode()) ? CreateVerifyCode.randomStr(10) : extendLogin.getExtendCode());
         return ResultUtil.data(extendLoginService.addExtendLogin(extendLogin));
     }
 
