@@ -1,14 +1,9 @@
 package com.wm.gameplat.controller.wage;
 
 
-import com.wm.gameplat.core.domain.ExtendLoginInfo;
 import com.wm.gameplat.core.domain.UserInfo;
-import com.wm.gameplat.core.service.ExtendLoginService;
 import com.wm.gameplat.core.service.UserInfoService;
-import com.wm.gameplat.utils.CreateVerifyCode;
-import com.wm.gameplat.utils.QRCodeUtil;
 import com.wm.gameplat.utils.ResultUtil;
-import com.wm.gameplat.utils.StringUtils;
 import com.wm.gameplat.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
