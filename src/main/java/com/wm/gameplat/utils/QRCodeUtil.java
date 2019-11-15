@@ -1,47 +1,43 @@
 package com.wm.gameplat.utils;
 
+import com.github.pagehelper.util.StringUtil;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.google.zxing.qrcode.QRCodeWriter;
 
-import java.io.File;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Map;
 
 public class QRCodeUtil {
 
-    public static void createQRCode() {
-        int width = 300;
-        int height = 300;
-        String format="png";
-        String content = "这是一个Java编写的二维码";
+    public static void createQRCode(HttpServletResponse resp,String url)  throws IOException {
+        if (StringUtil.isEmpty(url)) return;
 
-
-        //定义二维码参数
-        HashMap ewm = new HashMap();
-        ewm.put(EncodeHintType.CHARACTER_SET,"utf-8");
-        ewm.put(EncodeHintType.ERROR_CORRECTION,ErrorCorrectionLevel.M);
-        ewm.put(EncodeHintType.MARGIN, 5);
-
+        ServletOutputStream stream = null;
         try {
-            //生成二维码
-            BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height,ewm);
-            Path file = new File("D:/img.png").toPath();
-            try {
-                MatrixToImageWriter.writeToPath(bitMatrix, format, file);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            stream = resp.getOutputStream();
+            Map<EncodeHintType, Object> hints = new HashMap<>();
+            //编码
+            hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+            //边框距
+            hints.put(EncodeHintType.MARGIN, 0);
+            QRCodeWriter qrCodeWriter = new QRCodeWriter();
+            BitMatrix bm = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, 300, 300, hints);
+            MatrixToImageWriter.writeToStream(bm, "png", stream);
+        } catch (WriterException e) {
+            e.getStackTrace();
+
+        } finally {
+            if (stream != null) {
+                stream.flush();
+                stream.close();
             }
-        } catch (
-                WriterException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
     }
 
