@@ -27,7 +27,7 @@ mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
 captcha:
   image:
-    - /usercenter/login
+    - /api/login
   sms:
     - /usercenter/smsLogin
   ignored:

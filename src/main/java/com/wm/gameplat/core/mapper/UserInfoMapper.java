@@ -14,6 +14,39 @@ import java.util.Map;
 @Mapper
 public interface UserInfoMapper {
 
+
+	UserInfo findById(Long id);
+
+	List<UserInfo> findByIds(List<Long> ids);
+
+	List<UserInfo> findByExample(UserInfo userInfo);
+
+	int count(UserInfo userInfo);
+
+	List<UserInfo> findByParams(Map<String, Object> params);
+
+	int countByParams(Map<String, Object> params);
+
+	List<UserInfo> findAll();
+
+	int save(UserInfo userInfo);
+
+	int update(UserInfo userInfo);
+
+	int delete(Long id);
+
+	int saveOrUpdate(UserInfo userInfo);
+
+	int batchSave(List<UserInfo> userInfoList);
+
+	int batchUpdate(List<UserInfo> userInfoList);
+
+	int batchDelete(List<Long> ids);
+
+	UserInfo findByUsername(String userName);
+
+	UserInfo findByMobile(String mobile);
+
 	/**
 	 * 用户新增代理注册
 	 *

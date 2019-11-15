@@ -42,5 +42,5 @@ public interface RoleInfoMapper {
 
     int batchDelete(List<Long> ids);
 
-    List<RoleInfo> findRoleByUser(Integer userId);
+    List<RoleInfo> findRoleByUser(Long userId);
 }

@@ -1,6 +1,7 @@
 package com.wm.gameplat.core.domain;
 
 import java.util.Date;
+import java.util.List;
 
 /**
 * @author zi
@@ -18,7 +19,7 @@ public class UserInfo {
     /**
     * 用户账号
     */
-    private String userName;
+    private String username;
     
     /**
     * 昵称
@@ -205,6 +206,11 @@ public class UserInfo {
     */
     private Integer safetyId;
 
+
+    private List<RoleInfo> roleList;
+
+    private List<MenuInfo> authorityList;
+
     public Long getUserId() {
         return userId;
     }
@@ -213,14 +219,14 @@ public class UserInfo {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
-    
+
     public String getNickName() {
         return nickName;
     }
@@ -228,7 +234,7 @@ public class UserInfo {
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
-    
+
     public Long getParentId() {
         return parentId;
     }
@@ -236,7 +242,7 @@ public class UserInfo {
     public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
-    
+
     public String getParentName() {
         return parentName;
     }
@@ -244,7 +250,7 @@ public class UserInfo {
     public void setParentName(String parentName) {
         this.parentName = parentName;
     }
-    
+
     public String getRelName() {
         return relName;
     }
@@ -252,7 +258,7 @@ public class UserInfo {
     public void setRelName(String relName) {
         this.relName = relName;
     }
-    
+
     public Long getRootId() {
         return rootId;
     }
@@ -260,7 +266,7 @@ public class UserInfo {
     public void setRootId(Long rootId) {
         this.rootId = rootId;
     }
-    
+
     public String getPassword() {
         return password;
     }
@@ -268,7 +274,7 @@ public class UserInfo {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getCashPassword() {
         return cashPassword;
     }
@@ -276,7 +282,7 @@ public class UserInfo {
     public void setCashPassword(String cashPassword) {
         this.cashPassword = cashPassword;
     }
-    
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -284,7 +290,7 @@ public class UserInfo {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    
+
     public String getIsChange() {
         return isChange;
     }
@@ -292,7 +298,7 @@ public class UserInfo {
     public void setIsChange(String isChange) {
         this.isChange = isChange;
     }
-    
+
     public String getUserType() {
         return userType;
     }
@@ -300,7 +306,7 @@ public class UserInfo {
     public void setUserType(String userType) {
         this.userType = userType;
     }
-    
+
     public String getIsLimitTicket() {
         return isLimitTicket;
     }
@@ -308,7 +314,7 @@ public class UserInfo {
     public void setIsLimitTicket(String isLimitTicket) {
         this.isLimitTicket = isLimitTicket;
     }
-    
+
     public String getIsProvideSalary() {
         return isProvideSalary;
     }
@@ -316,7 +322,7 @@ public class UserInfo {
     public void setIsProvideSalary(String isProvideSalary) {
         this.isProvideSalary = isProvideSalary;
     }
-    
+
     public String getSalt() {
         return salt;
     }
@@ -324,7 +330,7 @@ public class UserInfo {
     public void setSalt(String salt) {
         this.salt = salt;
     }
-    
+
     public String getSex() {
         return sex;
     }
@@ -332,7 +338,7 @@ public class UserInfo {
     public void setSex(String sex) {
         this.sex = sex;
     }
-    
+
     public Date getBirthday() {
         return birthday;
     }
@@ -340,7 +346,7 @@ public class UserInfo {
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -348,7 +354,7 @@ public class UserInfo {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     public String getWechat() {
         return wechat;
     }
@@ -356,7 +362,7 @@ public class UserInfo {
     public void setWechat(String wechat) {
         this.wechat = wechat;
     }
-    
+
     public String getQq() {
         return qq;
     }
@@ -364,7 +370,7 @@ public class UserInfo {
     public void setQq(String qq) {
         this.qq = qq;
     }
-    
+
     public String getStatus() {
         return status;
     }
@@ -372,7 +378,7 @@ public class UserInfo {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
     public String getRemark() {
         return remark;
     }
@@ -380,7 +386,7 @@ public class UserInfo {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-    
+
     public String getRegisterOrigin() {
         return registerOrigin;
     }
@@ -388,7 +394,7 @@ public class UserInfo {
     public void setRegisterOrigin(String registerOrigin) {
         this.registerOrigin = registerOrigin;
     }
-    
+
     public String getRegisterIp() {
         return registerIp;
     }
@@ -396,7 +402,7 @@ public class UserInfo {
     public void setRegisterIp(String registerIp) {
         this.registerIp = registerIp;
     }
-    
+
     public Date getRegisterTime() {
         return registerTime;
     }
@@ -404,7 +410,7 @@ public class UserInfo {
     public void setRegisterTime(Date registerTime) {
         this.registerTime = registerTime;
     }
-    
+
     public String getUpdateBy() {
         return updateBy;
     }
@@ -412,7 +418,7 @@ public class UserInfo {
     public void setUpdateBy(String updateBy) {
         this.updateBy = updateBy;
     }
-    
+
     public Date getUpdateTime() {
         return updateTime;
     }
@@ -420,7 +426,7 @@ public class UserInfo {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-    
+
     public Date getRegisterDate() {
         return registerDate;
     }
@@ -428,7 +434,7 @@ public class UserInfo {
     public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;
     }
-    
+
     public String getBrowser() {
         return browser;
     }
@@ -436,7 +442,7 @@ public class UserInfo {
     public void setBrowser(String browser) {
         this.browser = browser;
     }
-    
+
     public String getOperatingSystem() {
         return operatingSystem;
     }
@@ -444,7 +450,7 @@ public class UserInfo {
     public void setOperatingSystem(String operatingSystem) {
         this.operatingSystem = operatingSystem;
     }
-    
+
     public Integer getRebateId() {
         return rebateId;
     }
@@ -452,7 +458,7 @@ public class UserInfo {
     public void setRebateId(Integer rebateId) {
         this.rebateId = rebateId;
     }
-    
+
     public Integer getUserLevel() {
         return userLevel;
     }
@@ -460,7 +466,7 @@ public class UserInfo {
     public void setUserLevel(Integer userLevel) {
         this.userLevel = userLevel;
     }
-    
+
     public String getUserModel() {
         return userModel;
     }
@@ -468,7 +474,7 @@ public class UserInfo {
     public void setUserModel(String userModel) {
         this.userModel = userModel;
     }
-    
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -476,7 +482,7 @@ public class UserInfo {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
-    
+
     public String getAncestralInfo() {
         return ancestralInfo;
     }
@@ -484,7 +490,7 @@ public class UserInfo {
     public void setAncestralInfo(String ancestralInfo) {
         this.ancestralInfo = ancestralInfo;
     }
-    
+
     public String getExtendProportionList() {
         return extendProportionList;
     }
@@ -492,7 +498,7 @@ public class UserInfo {
     public void setExtendProportionList(String extendProportionList) {
         this.extendProportionList = extendProportionList;
     }
-    
+
     public String getExtendGameList() {
         return extendGameList;
     }
@@ -500,7 +506,7 @@ public class UserInfo {
     public void setExtendGameList(String extendGameList) {
         this.extendGameList = extendGameList;
     }
-    
+
     public String getPassStrength() {
         return passStrength;
     }
@@ -508,7 +514,7 @@ public class UserInfo {
     public void setPassStrength(String passStrength) {
         this.passStrength = passStrength;
     }
-    
+
     public Integer getSafetyId() {
         return safetyId;
     }
@@ -517,49 +523,19 @@ public class UserInfo {
         this.safetyId = safetyId;
     }
 
+    public List<RoleInfo> getRoleList() {
+        return roleList;
+    }
 
-    @Override
-    public String toString() {
-        return "UserInfo{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", parentId=" + parentId +
-                ", parentName='" + parentName + '\'' +
-                ", relName='" + relName + '\'' +
-                ", rootId=" + rootId +
-                ", password='" + password + '\'' +
-                ", cashPassword='" + cashPassword + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", isChange='" + isChange + '\'' +
-                ", userType='" + userType + '\'' +
-                ", isLimitTicket='" + isLimitTicket + '\'' +
-                ", isProvideSalary='" + isProvideSalary + '\'' +
-                ", salt='" + salt + '\'' +
-                ", sex='" + sex + '\'' +
-                ", birthday=" + birthday +
-                ", email='" + email + '\'' +
-                ", wechat='" + wechat + '\'' +
-                ", qq='" + qq + '\'' +
-                ", status='" + status + '\'' +
-                ", remark='" + remark + '\'' +
-                ", registerOrigin='" + registerOrigin + '\'' +
-                ", registerIp='" + registerIp + '\'' +
-                ", registerTime=" + registerTime +
-                ", updateBy='" + updateBy + '\'' +
-                ", updateTime=" + updateTime +
-                ", registerDate=" + registerDate +
-                ", browser='" + browser + '\'' +
-                ", operatingSystem='" + operatingSystem + '\'' +
-                ", rebateId=" + rebateId +
-                ", userLevel=" + userLevel +
-                ", userModel='" + userModel + '\'' +
-                ", createTime=" + createTime +
-                ", ancestralInfo='" + ancestralInfo + '\'' +
-                ", extendProportionList='" + extendProportionList + '\'' +
-                ", extendGameList='" + extendGameList + '\'' +
-                ", passStrength='" + passStrength + '\'' +
-                ", safetyId=" + safetyId +
-                '}';
+    public void setRoleList(List<RoleInfo> roleList) {
+        this.roleList = roleList;
+    }
+
+    public List<MenuInfo> getAuthorityList() {
+        return authorityList;
+    }
+
+    public void setAuthorityList(List<MenuInfo> authorityList) {
+        this.authorityList = authorityList;
     }
 }

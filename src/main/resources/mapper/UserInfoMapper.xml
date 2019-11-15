@@ -6,7 +6,7 @@
     <resultMap type="com.wm.gameplat.core.domain.UserInfo" id="resultUserInfo">
 
                     <result column="user_id"            property="userId"/>
-                    <result column="user_name"          property="userName"/>
+                    <result column="user_name"          property="username"/>
                     <result column="nick_name"          property="nickName"/>
                     <result column="parent_id"          property="parentId"/>
                     <result column="parent_name"        property="parentName"/>
@@ -51,6 +51,179 @@
              remark, register_origin, register_ip, register_time, update_by, update_time, register_date, browser, operating_system,
              rebate_id, user_level, user_model, create_time, ancestral_info, extend_proportion_list, extend_game_list, pass_strength,
              safety_id</sql>
+
+    <select id="findById" resultMap="resultUserInfo" parameterType="java.lang.Long">
+        select
+        <include refid="FieldsOfUserInfo"/>
+        from user_info where id = #{id}
+    </select>
+
+    <select id="findByIds" resultMap="resultUserInfo" parameterType="java.util.List">
+        select
+        <include refid="FieldsOfUserInfo"/>
+        from user_info where id in
+        <foreach item="item" index="index" collection="list" open="(" separator=", " close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="findByExample" resultMap="resultUserInfo"
+            parameterType="com.wm.gameplat.core.domain.UserInfo">
+        select
+        <include refid="FieldsOfUserInfo"/>
+        from user_info
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="username != null and username != ''">and user_name = #{username}</if>
+            <if test="phone != null and phone != ''">and phone = #{phone}</if>
+            <if test="password != null and password != ''">and password = #{password}</if>
+            <if test="userType != null and userType != ''">and user_type = #{userType}</if>
+            <if test="status != null and status != ''">and status = #{status}</if>
+            <if test="registerMode != null and registerMode != ''">and register_mode = #{registerMode}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+        </where>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer"
+            parameterType="com.wm.gameplat.core.domain.UserInfo">
+        select count(id) from user_info
+        <where>
+            <if test="id != null and id !=''">and id = #{id}</if>
+            <if test="username != null and username !=''">and user_name = #{username}</if>
+            <if test="phone != null and phone !=''">and phone = #{phone}</if>
+            <if test="password != null and password !=''">and password = #{password}</if>
+            <if test="userType != null and userType !=''">and user_type = #{userType}</if>
+            <if test="status != null and status !=''">and status = #{status}</if>
+            <if test="registerMode != null and registerMode !=''">and register_mode = #{registerMode}</if>
+            <if test="createTime != null and createTime !=''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime !=''">and update_time = #{updateTime}</if>
+        </where>
+    </select>
+
+    <select id="findByParams" resultMap="resultUserInfo" parameterType="java.util.Map">
+        select
+        <include refid="FieldsOfUserInfo"/>
+        from user_info
+        <where>
+            <if test="id != null and id != '' ">and id = #{id}</if>
+            <if test="username != null and username != '' ">and user_name = #{username}</if>
+            <if test="phone != null and phone != '' ">and phone = #{phone}</if>
+            <if test="password != null and password != '' ">and password = #{password}</if>
+            <if test="userType != null and userType != '' ">and user_type = #{userType}</if>
+            <if test="status != null and status != '' ">and status = #{status}</if>
+            <if test="registerMode != null and registerMode != '' ">and register_mode = #{registerMode}</if>
+            <if test="createTime != null and createTime != '' ">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != '' ">and update_time = #{updateTime}</if>
+        </where>
+    </select>
+
+    <select id="countByParams" resultType="java.lang.Integer" parameterType="java.util.Map">
+        select count(id) from user_info
+        <where>
+            <if test="id != null and id != '' ">and id = #{id}</if>
+            <if test="username != null and username != '' ">and user_name = #{username}</if>
+            <if test="phone != null and phone != '' ">and phone = #{phone}</if>
+            <if test="password != null and password != '' ">and password = #{password}</if>
+            <if test="userType != null and userType != '' ">and user_type = #{userType}</if>
+            <if test="status != null and status != '' ">and status = #{status}</if>
+            <if test="registerMode != null and registerMode != '' ">and register_mode = #{registerMode}</if>
+            <if test="createTime != null and createTime != '' ">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != '' ">and update_time = #{updateTime}</if>
+        </where>
+    </select>
+
+    <select id="findAll" resultMap="resultUserInfo">
+        select
+        <include refid="FieldsOfUserInfo"/>
+        from user_info
+    </select>
+
+    <insert id="save" parameterType="com.wm.gameplat.core.domain.UserInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_info(
+        <include refid="FieldsOfUserInfo"/>
+        ) values (
+        #{username}, #{phone}, #{password}, #{userType}, #{status}, #{registerMode}, #{createTime}, #{updateTime} )
+    </insert>
+
+    <update id="update" parameterType="com.wm.gameplat.core.domain.UserInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        update user_info
+        <set>
+            <if test="id != null and id != '' ">id = #{id},</if>
+            <if test="username != null and username != '' ">user_name = #{username},</if>
+            <if test="phone != null and phone != '' ">phone = #{phone},</if>
+            <if test="password != null and password != '' ">password = #{password},</if>
+            <if test="userType != null and userType != '' ">user_type = #{userType},</if>
+            <if test="status != null and status != '' ">status = #{status},</if>
+            <if test="registerMode != null and registerMode != '' ">register_mode = #{registerMode},</if>
+            <if test="createTime != null and createTime != '' ">create_time = #{createTime},</if>
+            <if test="updateTime != null and updateTime != '' ">update_time = #{updateTime},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from user_info where id = #{id}
+    </delete>
+
+    <insert id="saveOrUpdate" parameterType="com.wm.gameplat.core.domain.UserInfo">
+        insert into user_info (
+        <include refid="FieldsOfUserInfo"/>
+        ) values (
+        #{username}, #{phone}, #{password}, #{userType}, #{status}, #{registerMode}, #{createTime}, #{updateTime} )
+        on duplicate key update
+        user_name=#{username}, phone=#{phone}, password=#{password}, user_type=#{userType}, status=#{status},
+        register_mode=#{registerMode}, create_time=#{createTime}, update_time=#{updateTime}
+    </insert>
+
+    <insert id="batchSave" parameterType="java.util.List">
+        insert into user_info(
+        <include refid="FieldsOfUserInfo"/>
+        ) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.username}, #{item.phone}, #{item.password}, #{item.userType}, #{item.status}, #{item.registerMode},
+            #{item.createTime}, #{item.updateTime})
+        </foreach>
+    </insert>
+
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update user_info
+            <set>
+                user_name=#{item.username},phone=#{item.phone},password=#{item.password}
+                ,user_type=#{item.userType},status=#{item.status} ,register_mode=#{item.registerMode}
+                ,create_time=#{item.createTime} ,update_time=#{item.updateTime}
+            </set>
+            where id = #{item.id}
+        </foreach>
+
+    </update>
+
+    <delete id="batchDelete" parameterType="java.util.List">
+        delete from user_info where id in
+        <foreach item="item" index="index" collection="list" open="(" separator=", " close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="findByUsername" resultMap="resultUserInfo" parameterType="string">
+        SELECT
+        *
+        FROM
+        user_info
+        where user_name = #{fuckYou}
+    </select>
+
+    <select id="findByMobile" resultMap="resultUserInfo" parameterType="string">
+         SELECT
+        *
+        FROM
+        user_info
+        where phone = #{fuckYou}
+
+    </select>
 
     <!-- 用户新增代理（注册管理） -->
     <insert id="addManageLogin" parameterType="com.wm.gameplat.core.domain.UserInfo">

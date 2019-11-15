@@ -2,6 +2,7 @@ package com.wm.gameplat.utils;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

@@ -51,7 +51,7 @@ public class UserInfoController {
         if(null == userInfo.getNickName())return error("不可为空");
         if(null == userInfo.getRelName())return  error("不可为空");
         if(null == userInfo.getPhoneNumber())return  error("不可为空");
-        if(null == userInfo.getUserName())return  error("不可为空");
+        if(null == userInfo.getUsername())return  error("不可为空");
         if(null == userInfo.getPassword())return  error("不可为空");
         if(null == userInfo.getRebateId(
                 //获得上一级信息得到等级分利规则（未获得上一级权限）

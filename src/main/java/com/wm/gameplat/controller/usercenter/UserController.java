@@ -22,7 +22,7 @@ import java.util.Map;
  * @author
  */
 @RestController
-@RequestMapping(value = "/usercenter")
+@RequestMapping(value = "/userCenter")
 public class UserController {
 
     @Autowired
@@ -71,7 +71,7 @@ public class UserController {
         return ResultUtil.success(token);
     }
 
-    @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/getUserInfo", method = RequestMethod.POST)
     public Result userInfo(){
         UserInfo currUser = securityUtil.getCurrUser();
         return ResultUtil.data(currUser);

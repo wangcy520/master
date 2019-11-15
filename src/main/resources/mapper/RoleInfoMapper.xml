@@ -181,7 +181,7 @@
         </foreach>
     </delete>
 
-    <select id="findRoleByUser" resultMap="resultMapOfRoleInfo" parameterType="integer">
+    <select id="findRoleByUser" resultMap="resultMapOfRoleInfo" parameterType="long">
         select
         <include refid="FieldsOfRoleInfo"/>
         from role_info where role_id in (select role_id from user_role where user_id = #{userId})

@@ -68,7 +68,7 @@ public class RoleInfoServiceImpl implements RoleInfoService {
     }
 
     @Override
-    public List<RoleInfo> findRoleByUser(Integer userId) {
+    public List<RoleInfo> findRoleByUser(Long userId) {
         return roleInfoMapper.findRoleByUser(userId);
     }
 }

@@ -27,5 +27,5 @@ public interface RoleInfoService {
 
     int update(RoleInfo roleInfo);
 
-    List<RoleInfo> findRoleByUser(Integer userId);
+    List<RoleInfo> findRoleByUser(Long userId);
 }
