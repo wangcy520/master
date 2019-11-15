@@ -41,9 +41,9 @@ public class ExtendLoginServiceImpl implements ExtendLoginService {
         return extendLoginMapper.selectExtendLoginList(params);
     }
     /**
-     * 查询推广注册信息表
+     * 更新推广注册信息表
      *
-     * @param  extendLogin	查询推广注册信息
+     * @param  extendLogin	更新推广注册信息
      * @return 推广注册信息
      */
     @Override
@@ -51,7 +51,12 @@ public class ExtendLoginServiceImpl implements ExtendLoginService {
         return extendLoginMapper.updateExtendLogin(extendLogin);
     }
 
-
+    /**
+     * 新增推广注册信息表
+     *
+     * @param  extendLogin	新增推广注册信息
+     * @return 推广注册信息
+     */
     @Override
     public int addExtendLogin(ExtendLoginInfo extendLogin) {
         return extendLoginMapper.addExtendLogin(extendLogin);

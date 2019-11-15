@@ -53,19 +53,18 @@ public class ExtendLoginController {
 
 
     /**
-     * 新增推广注册表
+     * 新增推广注册
      *
      * @param extendLogin
      */
     @PostMapping(value = "/add")
     public Result addExtendLogin(ExtendLoginInfo extendLogin) {
-        //调取二维码
-        QRCodeUtil.createQRCode();
+        /*//生成二维码
+        QRCodeUtil.createQRCode();*/
         //获取推广网页地址
         extendLogin.setExtendHtml("http://baidu.com");
         //是否生成10位推广码
         extendLogin.setExtendCode(StringUtils.isEmpty(extendLogin.getExtendCode()) ? CreateVerifyCode.randomStr(10) : extendLogin.getExtendCode());
         return ResultUtil.data(extendLoginService.addExtendLogin(extendLogin));
     }
-
 }

@@ -3,197 +3,141 @@
 
 <mapper namespace="com.wm.gameplat.core.mapper.UserInfoMapper">
 
-    <resultMap type="com.wm.gameplat.core.domain.UserInfo" id="resultMapOfUserInfo">
-        <result column="id" property="id"/>
-        <result column="user_name" property="username"/>
-        <result column="phone" property="phone"/>
-        <result column="password" property="password"/>
-        <result column="user_type" property="userType"/>
-        <result column="status" property="status"/>
-        <result column="register_mode" property="registerMode"/>
-        <result column="create_time" property="createTime"/>
-        <result column="update_time" property="updateTime"/>
-    </resultMap>
+    <resultMap type="com.wm.gameplat.core.domain.UserInfo" id="resultUserInfo">
 
-    <sql id="FieldsOfUserInfo">id, user_name, phone, password, user_type, status, register_mode, create_time,
-        update_time
-    </sql>
+                    <result column="user_id"            property="userId"/>
+                    <result column="user_name"          property="userName"/>
+                    <result column="nick_name"          property="nickName"/>
+                    <result column="parent_id"          property="parentId"/>
+                    <result column="parent_name"        property="parentName"/>
+                    <result column="rel_name"           property="relName"/>
+                    <result column="root_id"            property="rootId"/>
+                    <result column="password"           property="password"/>
+                    <result column="cash_password"      property="cashPassword"/>
+                    <result column="phone_number"       property="phoneNumber"/>
+                    <result column="is_change"          property="isChange"/>
+                    <result column="user_type"          property="userType"/>
+                    <result column="is_limit_ticket"    property="isLimitTicket"/>
+                    <result column="is_provide_salary"  property="isProvideSalary"/>
+                    <result column="salt"               property="salt"/>
+                    <result column="sex"                property="sex"/>
+                    <result column="birthday"           property="birthday"/>
+                    <result column="email"              property="email"/>
+                    <result column="wechat"             property="wechat"/>
+                    <result column="qq"                 property="qq"/>
+                    <result column="status"             property="status"/>
+                    <result column="remark"             property="remark"/>
+                    <result column="register_origin"    property="registerOrigin"/>
+                    <result column="register_ip"        property="registerIp"/>
+                    <result column="register_time"      property="registerTime"/>
+                    <result column="update_by"          property="updateBy"/>
+                    <result column="update_time"        property="updateTime"/>
+                    <result column="register_date"      property="registerDate"/>
+                    <result column="browser"            property="browser"/>
+                    <result column="operating_system"   property="operatingSystem"/>
+                    <result column="rebate_id"          property="rebateId"/>
+                    <result column="user_level"         property="userLevel"/>
+                    <result column="user_model"         property="userModel"/>
+                    <result column="create_time"        property="createTime"/>
+                    <result column="ancestral_info"     property="ancestralInfo"/>
+                    <result column="extend_proportion_list" property="extendProportionList"/>
+                    <result column="extend_game_list"   property="extendGameList"/>
+                    <result column="pass_strength"      property="passStrength"/>
+                    <result column="safety_id"          property="safetyId"/>
+            </resultMap>
+    <!--用户信息字段 -->
+    <sql id="FieldsOfUserInfo">user_id, user_name, nick_name, parent_id, parent_name, rel_name, root_id, password, cash_password,
+            phone_number, is_change, user_type, is_limit_ticket, is_provide_salary, salt, sex, birthday, email, wechat, qq, status,
+             remark, register_origin, register_ip, register_time, update_by, update_time, register_date, browser, operating_system,
+             rebate_id, user_level, user_model, create_time, ancestral_info, extend_proportion_list, extend_game_list, pass_strength,
+             safety_id</sql>
 
-    <sql id="FieldsOfUserInfoWithoutId">user_name, phone, password, user_type, status, register_mode, create_time,
-        update_time
-    </sql>
+    <!-- 用户新增代理（注册管理） -->
+    <insert id="addManageLogin" parameterType="com.wm.gameplat.core.domain.UserInfo">
+        INSERT INTO tab_extend_login(
+        <if test="userId != null  and userId != -1">
+            user_id,
+        </if>
+        <if test="userName != null  and userName != ''">
+            user_name,
+        </if>
+        <if test="extendId != null  and extendId != -1">
+            extend_id,
+        </if>
+        <if test="extendHtml != null  and extendHtml != ''">
+            extend_html,
+        </if>
+        <if test="extendCode != null  and extendCode != ''">
+            extend_code,
+        </if>
+        <if test="extendIndex != null  and extendIndex != ''">
+            extend_index,
+        </if>
+        <if test="extendAimType != null  and extendAimType != ''">
+            extend_aim_type,
+        </if>
+        <if test="extendProportion != null  and extendProportion != ''">
+            extend_proportion,
+        </if>
+        <if test="visitCount != null  and visitCount != -1">
+            visit_count,
+        </if>
+        <if test="registerCount != null  and registerCount != -1">
+            register_count,
+        </if>
+        <if test="createBy != null  and createBy != ''">
+            create_by,
+        </if>
+        create_time)
+        VALUES
+        (
+        <if test="userId != null  and userId != -1">
+            #{userId},
+        </if>
+        <if test="userName != null  and userName != ''">
+            #{userName},
+        </if>
+        <if test="extendId != null  and extendId != -1">
+            #{extendId},
+        </if>
+        <if test="extendHtml != null  and extendHtml != ''">
+            #{extendHtml},
+        </if>
+        <if test="extendCode != null  and extendCode != ''">
+            #{extendCode},
+        </if>
+        <if test="extendIndex != null  and extendIndex != ''">
+            #{extendIndex},
+        </if>
+        <if test="extendAimType != null  and extendAimType != ''">
+            #{extendAimType},
+        </if>
+        <if test="extendProportion != null  and extendProportion != ''">
+            #{extendProportion},
+        </if>
+        <if test="visitCount != null  and visitCount != -1">
+            #{visitCount},
+        </if>
+        <if test="registerCount != null  and registerCount != -1">
+            #{registerCount},
+        </if>
+        <if test="createBy != null  and createBy != ''">
+            #{createBy},
+        </if>
+        sysdate())
+    </insert>
 
-    <select id="findById" resultMap="resultMapOfUserInfo" parameterType="java.lang.Long">
-        select
-        <include refid="FieldsOfUserInfo"/>
-        from user_info where id = #{id}
-    </select>
 
-    <select id="findByIds" resultMap="resultMapOfUserInfo" parameterType="java.util.List">
-        select
-        <include refid="FieldsOfUserInfo"/>
-        from user_info where id in
-        <foreach item="item" index="index" collection="list" open="(" separator=", " close=")">
-            #{item}
-        </foreach>
-    </select>
-
-    <select id="findByExample" resultMap="resultMapOfUserInfo"
-            parameterType="com.wm.gameplat.core.domain.UserInfo">
-        select
-        <include refid="FieldsOfUserInfo"/>
-        from user_info
-        <where>
-            <if test="id != null and id != ''">and id = #{id}</if>
-            <if test="username != null and username != ''">and user_name = #{username}</if>
-            <if test="phone != null and phone != ''">and phone = #{phone}</if>
-            <if test="password != null and password != ''">and password = #{password}</if>
-            <if test="userType != null and userType != ''">and user_type = #{userType}</if>
-            <if test="status != null and status != ''">and status = #{status}</if>
-            <if test="registerMode != null and registerMode != ''">and register_mode = #{registerMode}</if>
-            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
-            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
-        </where>
-    </select>
-
-    <select id="count" resultType="java.lang.Integer"
-            parameterType="com.wm.gameplat.core.domain.UserInfo">
+    <!-- 用户列表查询 （未完成）-->
+    <select id="selectUserList" resultType="com.wm.gameplat.core.domain.UserInfo" parameterType="com.wm.gameplat.core.domain.UserInfo">
         select count(id) from user_info
+
         <where>
-            <if test="id != null and id !=''">and id = #{id}</if>
-            <if test="username != null and username !=''">and user_name = #{username}</if>
-            <if test="phone != null and phone !=''">and phone = #{phone}</if>
-            <if test="password != null and password !=''">and password = #{password}</if>
-            <if test="userType != null and userType !=''">and user_type = #{userType}</if>
-            <if test="status != null and status !=''">and status = #{status}</if>
-            <if test="registerMode != null and registerMode !=''">and register_mode = #{registerMode}</if>
-            <if test="createTime != null and createTime !=''">and create_time = #{createTime}</if>
-            <if test="updateTime != null and updateTime !=''">and update_time = #{updateTime}</if>
+            <if test="userName != null and userName !=''"> and user_name = #{userName}</if>
+            <if test="userType != null and userType !=''"> and user_type = #{userType}</if>
+            <if test="rebateId != null and rebateId !=''"> and rebate_id = #{rebateId}</if>
+            <if test="createTime != null and createTime !=''"> and create_time = #{createTime}</if>
         </where>
-    </select>
-
-    <select id="findByParams" resultMap="resultMapOfUserInfo" parameterType="java.util.Map">
-        select
-        <include refid="FieldsOfUserInfo"/>
-        from user_info
-        <where>
-            <if test="id != null and id != '' ">and id = #{id}</if>
-            <if test="username != null and username != '' ">and user_name = #{username}</if>
-            <if test="phone != null and phone != '' ">and phone = #{phone}</if>
-            <if test="password != null and password != '' ">and password = #{password}</if>
-            <if test="userType != null and userType != '' ">and user_type = #{userType}</if>
-            <if test="status != null and status != '' ">and status = #{status}</if>
-            <if test="registerMode != null and registerMode != '' ">and register_mode = #{registerMode}</if>
-            <if test="createTime != null and createTime != '' ">and create_time = #{createTime}</if>
-            <if test="updateTime != null and updateTime != '' ">and update_time = #{updateTime}</if>
-        </where>
-    </select>
-
-    <select id="countByParams" resultType="java.lang.Integer" parameterType="java.util.Map">
-        select count(id) from user_info
-        <where>
-            <if test="id != null and id != '' ">and id = #{id}</if>
-            <if test="username != null and username != '' ">and user_name = #{username}</if>
-            <if test="phone != null and phone != '' ">and phone = #{phone}</if>
-            <if test="password != null and password != '' ">and password = #{password}</if>
-            <if test="userType != null and userType != '' ">and user_type = #{userType}</if>
-            <if test="status != null and status != '' ">and status = #{status}</if>
-            <if test="registerMode != null and registerMode != '' ">and register_mode = #{registerMode}</if>
-            <if test="createTime != null and createTime != '' ">and create_time = #{createTime}</if>
-            <if test="updateTime != null and updateTime != '' ">and update_time = #{updateTime}</if>
-        </where>
-    </select>
-
-    <select id="findAll" resultMap="resultMapOfUserInfo">
-        select
-        <include refid="FieldsOfUserInfo"/>
-        from user_info
-    </select>
-
-    <insert id="save" parameterType="com.wm.gameplat.core.domain.UserInfo" useGeneratedKeys="true"
-            keyProperty="id">
-        insert into user_info(
-        <include refid="FieldsOfUserInfoWithoutId"/>
-        ) values (
-        #{username}, #{phone}, #{password}, #{userType}, #{status}, #{registerMode}, #{createTime}, #{updateTime} )
-    </insert>
-
-    <update id="update" parameterType="com.wm.gameplat.core.domain.UserInfo" useGeneratedKeys="true"
-            keyProperty="id">
-        update user_info
-        <set>
-            <if test="id != null and id != '' ">id = #{id},</if>
-            <if test="username != null and username != '' ">user_name = #{username},</if>
-            <if test="phone != null and phone != '' ">phone = #{phone},</if>
-            <if test="password != null and password != '' ">password = #{password},</if>
-            <if test="userType != null and userType != '' ">user_type = #{userType},</if>
-            <if test="status != null and status != '' ">status = #{status},</if>
-            <if test="registerMode != null and registerMode != '' ">register_mode = #{registerMode},</if>
-            <if test="createTime != null and createTime != '' ">create_time = #{createTime},</if>
-            <if test="updateTime != null and updateTime != '' ">update_time = #{updateTime},</if>
-        </set>
-        where id = #{id}
-    </update>
-
-    <delete id="delete" parameterType="java.lang.Long">
-        delete from user_info where id = #{id}
-    </delete>
-
-    <insert id="saveOrUpdate" parameterType="com.wm.gameplat.core.domain.UserInfo">
-        insert into user_info (
-        <include refid="FieldsOfUserInfoWithoutId"/>
-        ) values (
-        #{username}, #{phone}, #{password}, #{userType}, #{status}, #{registerMode}, #{createTime}, #{updateTime} )
-        on duplicate key update
-        user_name=#{username}, phone=#{phone}, password=#{password}, user_type=#{userType}, status=#{status},
-        register_mode=#{registerMode}, create_time=#{createTime}, update_time=#{updateTime}
-    </insert>
-
-    <insert id="batchSave" parameterType="java.util.List">
-        insert into user_info(
-        <include refid="FieldsOfUserInfoWithoutId"/>
-        ) values
-        <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.username}, #{item.phone}, #{item.password}, #{item.userType}, #{item.status}, #{item.registerMode},
-            #{item.createTime}, #{item.updateTime})
-        </foreach>
-    </insert>
-
-    <update id="batchUpdate" parameterType="java.util.List">
-        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
-            update user_info
-            <set>
-                user_name=#{item.username},phone=#{item.phone},password=#{item.password}
-                ,user_type=#{item.userType},status=#{item.status} ,register_mode=#{item.registerMode}
-                ,create_time=#{item.createTime} ,update_time=#{item.updateTime}
-            </set>
-            where id = #{item.id}
-        </foreach>
-
-    </update>
-
-    <delete id="batchDelete" parameterType="java.util.List">
-        delete from user_info where id in
-        <foreach item="item" index="index" collection="list" open="(" separator=", " close=")">
-            #{item}
-        </foreach>
-    </delete>
-
-    <select id="findByUsername" resultMap="resultMapOfUserInfo" parameterType="string">
-        SELECT
-        *
-        FROM
-        user_info
-        where user_name = #{fuckYou}
-    </select>
-
-    <select id="findByMobile" resultMap="resultMapOfUserInfo" parameterType="string">
-         SELECT
-        *
-        FROM
-        user_info
-        where phone = #{fuckYou}
-
     </select>
 
 </mapper>
