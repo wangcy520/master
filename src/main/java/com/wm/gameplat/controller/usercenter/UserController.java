@@ -11,6 +11,7 @@ import com.wm.gameplat.utils.ResultUtil;
 import com.wm.gameplat.utils.SecurityUtil;
 import com.wm.gameplat.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -76,6 +77,18 @@ public class UserController {
         UserInfo currUser = securityUtil.getCurrUser();
         return ResultUtil.data(currUser);
     }
+
+
+    @GetMapping(value = "/getTest")
+    public void getTest(@Validated UserInfo userInfo){
+        System.out.println("aaaaaaaaaaaa");
+
+
+
+
+
+    }
+
 
 
 }

@@ -2,10 +2,7 @@ package com.wm.gameplat.config.security;
 
 import com.wm.gameplat.config.properties.CaptchaProperties;
 import com.wm.gameplat.config.properties.TokenProperties;
-import com.wm.gameplat.config.security.jwt.AuthenticationFailHandler;
-import com.wm.gameplat.config.security.jwt.AuthenticationSuccessHandler;
-import com.wm.gameplat.config.security.jwt.JWTAuthenticationFilter;
-import com.wm.gameplat.config.security.jwt.RestAccessDeniedHandler;
+import com.wm.gameplat.config.security.jwt.*;
 import com.wm.gameplat.config.security.permission.MyFilterSecurityInterceptor;
 import com.wm.gameplat.config.security.validate.ImageValidateFilter;
 import com.wm.gameplat.config.security.validate.SmsValidateFilter;
@@ -14,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,6 +22,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.web.cors.CorsUtils;
 
 
@@ -35,7 +34,7 @@ import org.springframework.web.cors.CorsUtils;
  */
 @Slf4j
 @Configuration
-@EnableWebSecurity
+/*@EnableWebSecurity*/
 @EnableGlobalMethodSecurity(prePostEnabled =true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -79,9 +78,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityUtil securityUtil;
 
+    @Autowired
+    private AuthenticationLoginHandler authenticationLoginHandler;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder(){
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return super.encode(rawPassword);
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return super.matches(rawPassword, encodedPassword);
+            }
+        });
     }
 
     @Override
@@ -97,7 +109,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         registry.and()
                 // 表单登录方式
                 .formLogin()
-                .loginPage("/usercenter/needLogin")
                 // 登录请求url
                 .loginProcessingUrl("/api/login")
                 .permitAll()
@@ -109,7 +120,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 允许网页iframe
                 .headers().frameOptions().disable()
                 .and()
-                .logout()
+                .logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
                 .permitAll()
                 .and()
                 .authorizeRequests()
@@ -141,5 +152,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class)
                 // 添加JWT认证过滤器
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), tokenProperties, redisTemplate, securityUtil));
+        http.exceptionHandling()
+                .authenticationEntryPoint(authenticationLoginHandler);
+
     }
 }

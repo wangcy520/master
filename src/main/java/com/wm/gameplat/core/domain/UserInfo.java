@@ -1,5 +1,6 @@
 package com.wm.gameplat.core.domain;
 
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class UserInfo {
     /**
     * 用户账号
     */
+    @NotBlank(message = "用户名不能为空")
+    @Pattern(regexp = "^[A-Za-z0-9\\u4e00-\\u9fa5]{5,10}$",message = "用户名格式只能为字母数字或汉字")
     private String username;
     
     /**
